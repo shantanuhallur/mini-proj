@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/sosbutton"
-        android:onClick="SoS"/>
+        android:onClick="Sop"/>
 
     <ImageButton
         android:id="@+id/Awareness"
