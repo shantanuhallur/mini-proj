@@ -2,6 +2,7 @@ package com.ssst.stree;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -16,6 +17,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void SoS(View view) {
+
+        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+        PendingIntent pi= PendingIntent.getActivity(getApplicationContext(), 0, intent,0);
+
+        SmsManager sms=SmsManager.getDefault();
+        sms.sendTextMessage("997529484", null, "hello javatpoint", pi,null);
+
 
 
     }

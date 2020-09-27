@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#df15e6">
 
     <Button
         android:id="@+id/button"
@@ -16,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/sosbutton"
-        android:onClick="Sop"/>
+        android:onClick="SoS"/>
 
     <ImageButton
         android:id="@+id/Awareness"
@@ -49,7 +50,8 @@
         android:onClick="SkillDevActivity"
         android:src="@drawable/skilldev"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside"
+        />
 
     <ImageButton
         android:id="@+id/Financial"
@@ -65,7 +67,8 @@
         android:src="@drawable/financialimage"
         android:onClick="FinancialActivity"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside"
+        "/>
 
     <ImageButton
         android:id="@+id/MentalHealth"
@@ -81,7 +84,8 @@
         android:onClick="MentalHealthActivity"
         android:src="@drawable/mentalhealth"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
