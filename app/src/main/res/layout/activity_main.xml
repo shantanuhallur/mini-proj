@@ -67,8 +67,7 @@
         android:src="@drawable/financialimage"
         android:onClick="FinancialActivity"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        "/>
+        android:scaleType="centerInside"/>
 
     <ImageButton
         android:id="@+id/MentalHealth"
