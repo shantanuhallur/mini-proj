@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Home"
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        />
+    <item
+        android:title="Awareness"
+        android:id="@+id/awareness"
+        android:icon="@drawable/awareness"
+        />
+    <item
+        android:title="Skill Development"
+        android:id="@+id/skilldev"
+        android:icon="@drawable/skilldev"
+        />
+    <item
+        android:title="Financial Empowerment"
+        android:id="@+id/financial"
+        android:icon="@drawable/financialemp"
+        />
+    <item
+        android:title="Problems"
+        android:id="@+id/problems"
+        android:icon="@drawable/problem"
+        />
+
+</menu>
