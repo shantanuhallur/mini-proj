@@ -15,11 +15,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Assign Variables
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-
-
-
 
     /*public void SoS(View view) {
 
@@ -101,6 +101,20 @@ public class MainActivity extends AppCompatActivity {
     public void ClickProblems(View view){
         //redirect Activity
         redirectActivity(this, Problems.class);
+    }
+
+    public void ClickSignIn(View view) {
+        //redirect Activity
+        MainActivity.redirectActivity(this,SignIn.class);
+    }
+
+    public void ClickSignUp(View view) {
+        //redirect Activity
+        MainActivity.redirectActivity(this,SignUp.class);
+    }
+
+    public void ClickSignOut(View view) {
+        FirebaseAuth.getInstance().signOut();
     }
 
     public static void redirectActivity(Activity activity, Class aClass) {
