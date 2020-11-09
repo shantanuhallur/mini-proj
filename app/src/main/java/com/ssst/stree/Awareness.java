@@ -14,6 +14,7 @@ public class Awareness extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Awareness");
         setContentView(R.layout.activity_awareness);
 
         //Assign Variable

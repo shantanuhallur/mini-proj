@@ -26,7 +26,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     //noinspection GradleCompatible
-    implementation 'com.android.support:design:25.1.0'
+    implementation 'com.android.support:design:25.1.0'// for navigation (i.e design purpose)
+    implementation "androidx.cardview:cardview:1.0.0"// for android 10 cardview
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'

@@ -14,6 +14,7 @@ public class Problems extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Problems");
         setContentView(R.layout.activity_problems);
 
         //Assign Variable

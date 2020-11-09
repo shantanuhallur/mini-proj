@@ -13,6 +13,7 @@ public class SkillDevelopment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Skill Development");
         setContentView(R.layout.activity_skill_development);
 
         //Assign Variable

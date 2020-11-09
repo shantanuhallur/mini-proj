@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Navigation Drawer Clickable
     public void ClickHome(View view){
         //Recreate Activity
         recreate();
@@ -117,6 +118,22 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         //Close Drawer
         closeDrawer(drawerLayout);
+    }
+
+    public void CardAwareness(View view) {
+        redirectActivity(this, Awareness.class);
+    }
+
+    public void CardSkill(View view) {
+        redirectActivity(this, SkillDevelopment.class);
+    }
+
+    public void CardFinancial(View view) {
+        redirectActivity(this, Financial.class);
+    }
+
+    public void CardProblems(View view) {
+        redirectActivity(this, Problems.class);
     }
 }
 
