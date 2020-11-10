@@ -1,28 +1,47 @@
 package com.ssst.stree;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+
 public class MainActivity extends AppCompatActivity {
+
+    //Variables are initialized
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
+    NavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
-    }
 
-    public void SoS(View view) {
+        //Assign Variables
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
+
+
+
+    /*public void SoS(View view) {
 
         String message = "Test";
         String number = "+919665308970";
@@ -31,25 +50,90 @@ public class MainActivity extends AppCompatActivity {
         mySms.sendTextMessage(number,null,message,null,null);
 
 
+    }*/
     }
 
-    public void AwarenessActivity(View view) {
-        Intent intent = new Intent(this, AwarenessActivity.class);
-        startActivity(intent);
+    public void ClickMenu(View view){
+        //Open Drawer
+        openDrawer(drawerLayout);
     }
 
-    public void SkillDevActivity(View view) {
-        Intent intent = new Intent(this, SkillDevActivity.class);
-        startActivity(intent);
+    public static void openDrawer(DrawerLayout drawerLayout) {
+        //Open Drawer Layout
+        drawerLayout.openDrawer(GravityCompat.START);
     }
 
-    public void FinancialActivity(View view) {
-        Intent intent = new Intent(this, FinancialActivity.class);
-        startActivity(intent);
+    public void ClickProfile(){
+        //Closes Drawer
+        closeDrawer(drawerLayout);
     }
 
-    public void MentalHealthActivity(View view) {
-        Intent intent = new Intent(this, MentalHealthActivity.class);
-        startActivity(intent);
+    public static void closeDrawer(DrawerLayout drawerLayout) {
+        //close drawer layout
+        //check condition
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            //When drawer is open
+            //Close the drawer
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    //Navigation Drawer Clickable
+    public void ClickHome(View view){
+        //Recreate Activity
+        recreate();
+    }
+
+    public void ClickAwareness(View view){
+        //Redirect activity to Awareness
+        redirectActivity(this, Awareness.class);
+    }
+
+    public void ClickSkill(View view){
+        //redirect Activity
+        redirectActivity(this, SkillDevelopment.class);
+    }
+
+    public void ClickFinancial(View view){
+        //redirect Activity
+        redirectActivity(this, Financial.class);
+    }
+
+    public void ClickProblems(View view){
+        //redirect Activity
+        redirectActivity(this, Problems.class);
+    }
+
+    public static void redirectActivity(Activity activity, Class aClass) {
+        //Initialize Intent
+        Intent intent = new Intent(activity, aClass);
+        //set flag
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //start activity
+        activity.startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Close Drawer
+        closeDrawer(drawerLayout);
+    }
+
+    public void CardAwareness(View view) {
+        redirectActivity(this, Awareness.class);
+    }
+
+    public void CardSkill(View view) {
+        redirectActivity(this, SkillDevelopment.class);
+    }
+
+    public void CardFinancial(View view) {
+        redirectActivity(this, Financial.class);
+    }
+
+    public void CardProblems(View view) {
+        redirectActivity(this, Problems.class);
     }
 }
+
