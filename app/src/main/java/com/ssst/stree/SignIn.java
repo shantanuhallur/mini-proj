@@ -67,6 +67,7 @@ public class SignIn extends AppCompatActivity {
     private void UpdateUI() {
         FirebaseUser user = mAuth.getCurrentUser();
         Log.d("SignIn",String.valueOf(profile!=null));
+//        Log.d("SignIn",user.getEmail());
 //        profile.append("\n");
         profile.setText("Hi Logged in");
 //        profile.append("\n");
