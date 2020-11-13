@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -14,7 +15,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class Financial extends AppCompatActivity {
 
     //Initialize variable
-    DrawerLayout drawerLayout;
+    private DrawerLayout drawerLayout;
+    private TextView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class Financial extends AppCompatActivity {
 
         //Assign Variable
         drawerLayout = findViewById(R.id.drawer_layout);
+        profile = findViewById(R.id.profile);
     }
 
     public void ClickMenu(View view){
@@ -72,6 +75,8 @@ public class Financial extends AppCompatActivity {
 
     public void ClickSignOut(View view) {
         FirebaseAuth.getInstance().signOut();
+        Toast.makeText(getApplicationContext(),"Signed Out",Toast.LENGTH_SHORT).show();
+        displayName();
     }
 
     @Override
@@ -79,5 +84,20 @@ public class Financial extends AppCompatActivity {
         super.onPause();
         //Close Drawer
         MainActivity.closeDrawer(drawerLayout);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        displayName();
+    }
+
+    private void displayName() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null) {
+            profile.setText(user.getEmail());
+        }else {
+            profile.setText("Your Profile");
+        }
     }
 }

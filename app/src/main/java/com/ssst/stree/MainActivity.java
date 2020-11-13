@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
     //Variables are initialized
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
-    NavigationView navigation;
+    private NavigationView navigation;
+    private TextView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Assign Variables
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        profile = findViewById(R.id.profile);
+    }
 
-    /*public void SoS(View view) {
+    public void SoS(View view) {
 
         String message = "Test";
         String number = "+919665308970";
@@ -50,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         mySms.sendTextMessage(number,null,message,null,null);
 
 
-    }*/
     }
 
     public void ClickMenu(View view){
@@ -115,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void ClickSignOut(View view) {
         FirebaseAuth.getInstance().signOut();
+        Toast.makeText(getApplicationContext(),"Signed Out",Toast.LENGTH_SHORT).show();
+        displayName();
     }
 
     public static void redirectActivity(Activity activity, Class aClass) {
@@ -131,6 +135,21 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         //Close Drawer
         closeDrawer(drawerLayout);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        displayName();
+    }
+
+    private void displayName() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null) {
+            profile.setText(user.getEmail());
+        }else {
+            profile.setText("Your Profile");
+        }
     }
 }
 

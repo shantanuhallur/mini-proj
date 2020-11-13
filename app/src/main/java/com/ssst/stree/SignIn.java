@@ -20,7 +20,7 @@ public class SignIn extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private FirebaseAuth mAuth;
-    private TextView profile;
+//    private TextView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +29,10 @@ public class SignIn extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        View v = getLayoutInflater().inflate(R.layout.main_nav_drawer,null);
+//        View v = getLayoutInflater().inflate(R.layout.main_nav_drawer,null);
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
-        profile = v.findViewById(R.id.profile);
+//        profile = v.findViewById(R.id.profile);
         Button signIn = findViewById(R.id.btnLogin);
 
 
@@ -65,11 +65,11 @@ public class SignIn extends AppCompatActivity {
     }
 
     private void UpdateUI() {
-        FirebaseUser user = mAuth.getCurrentUser();
-        Log.d("SignIn",String.valueOf(profile!=null));
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        Log.d("SignIn",String.valueOf(profile!=null));
 //        Log.d("SignIn",user.getEmail());
 //        profile.append("\n");
-        profile.setText("Hi Logged in");
+//        profile.setText("Hi Logged in");
 //        profile.append("\n");
 //        profile.append(user.getDisplayName());
         this.finish();
