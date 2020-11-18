@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Financial extends AppCompatActivity {
 
@@ -54,6 +59,20 @@ public class Financial extends AppCompatActivity {
     public void ClickProblems(View view){
         //redirect Activity
         MainActivity.redirectActivity(this, Problems.class);
+    }
+
+    public void ClickSignIn(View view) {
+        //redirect Activity
+        MainActivity.redirectActivity(this,SignIn.class);
+    }
+
+    public void ClickSignUp(View view) {
+        //redirect Activity
+        MainActivity.redirectActivity(this,SignUp.class);
+    }
+
+    public void ClickSignOut(View view) {
+        FirebaseAuth.getInstance().signOut();
     }
 
     @Override
