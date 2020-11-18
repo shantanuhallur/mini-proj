@@ -21,7 +21,7 @@ public class SignUp extends AppCompatActivity {
     EditText password;
     FirebaseAuth mAuth;
     Button signUp;
-    TextView profile;
+//    TextView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +30,10 @@ public class SignUp extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        View v = getLayoutInflater().inflate(R.layout.main_nav_drawer,null);
+//        View v = getLayoutInflater().inflate(R.layout.main_nav_drawer,null);
         email = findViewById(R.id.ettEmail);
         password = findViewById(R.id.ettPassword);
-        profile = v.findViewById(R.id.profile);
+//        profile = v.findViewById(R.id.profile);
         signUp = findViewById(R.id.btnRegister);
 
         signUp.setOnClickListener((new View.OnClickListener() {
@@ -65,10 +65,10 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void UpdateUI() {
-        FirebaseUser user = mAuth.getCurrentUser();
-        Log.d("SignIn", String.valueOf(profile!=null));
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        Log.d("SignIn", String.valueOf(profile!=null));
 //        profile.append("\n");
-        profile.setText("Hi logged in");
+//        profile.setText("Hi logged in");
 //        profile.append("\n");
 //        profile.append(user.getDisplayName());
         this.finish();
