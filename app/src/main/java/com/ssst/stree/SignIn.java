@@ -8,14 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SignIn extends AppCompatActivity {
     private EditText email;
@@ -56,11 +54,11 @@ public class SignIn extends AppCompatActivity {
                 if(!task.isSuccessful()) {
                     Log.d("SignIn","Something wrong");
                     // TODO : Make the page interactive on failure
-                    Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("SignIn","Awesome");
                     // TODO : Make the page interactive on success
-                    Toast.makeText(getApplicationContext(),"Signed up",Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"Signed up",Toast.LENGTH_SHORT).show();
                     UpdateUI();
                 }
             }
