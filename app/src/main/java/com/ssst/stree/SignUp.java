@@ -66,12 +66,6 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void UpdateUI() {
-//        FirebaseUser user = mAuth.getCurrentUser();
-//        Log.d("SignIn", String.valueOf(profile!=null));
-//        profile.append("\n");
-//        profile.setText("Hi logged in");
-//        profile.append("\n");
-//        profile.append(user.getDisplayName());
         this.finish();
     }
 }
