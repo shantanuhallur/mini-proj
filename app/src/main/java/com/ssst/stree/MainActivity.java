@@ -15,18 +15,23 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     //Variables are initialized
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
-    NavigationView navigation;
+    private NavigationView navigation;
+    private TextView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Assign Variables
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        profile = findViewById(R.id.profile);
+    }
 
-
-
-
-
-    /*public void SoS(View view) {
+    public void SoS(View view) {
 
         String message = "Test";
         String number = "+919665308970";
@@ -50,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         mySms.sendTextMessage(number,null,message,null,null);
 
 
-    }*/
     }
 
     public void ClickMenu(View view){
@@ -104,6 +106,22 @@ public class MainActivity extends AppCompatActivity {
         redirectActivity(this, Problems.class);
     }
 
+    public void ClickSignIn(View view) {
+        //redirect Activity
+        MainActivity.redirectActivity(this,SignIn.class);
+    }
+
+    public void ClickSignUp(View view) {
+        //redirect Activity
+        MainActivity.redirectActivity(this,SignUp.class);
+    }
+
+    public void ClickSignOut(View view) {
+        FirebaseAuth.getInstance().signOut();
+        Toast.makeText(getApplicationContext(),"Signed Out",Toast.LENGTH_SHORT).show();
+        displayName();
+    }
+
     public static void redirectActivity(Activity activity, Class aClass) {
         //Initialize Intent
         Intent intent = new Intent(activity, aClass);
@@ -134,6 +152,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void CardProblems(View view) {
         redirectActivity(this, Problems.class);
+    }
+
+    @Override
+    protected void onResume () {
+        super.onResume();
+        displayName();
+    }
+
+    private void displayName () {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            profile.setText(user.getEmail());
+        } else {
+            profile.setText("Your Profile");
+        }
     }
 }
 

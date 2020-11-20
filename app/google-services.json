@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "145956160593",
+    "firebase_url": "https://stree-38f30.firebaseio.com",
+    "project_id": "stree-38f30",
+    "storage_bucket": "stree-38f30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145956160593:android:eeb43f00a5156adcc56470",
+        "android_client_info": {
+          "package_name": "com.ssst.stree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145956160593-om3maeb65s8cmdsa38bekphotdit6t97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_jmNUnh6qnsNIZj7w80Fac28ppiWQqhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145956160593-om3maeb65s8cmdsa38bekphotdit6t97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
