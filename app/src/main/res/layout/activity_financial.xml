@@ -33,7 +33,7 @@
         android:background="@color/colorPrimary">
 
         <include
-            layout="@layout/main_nav_drawer"/>
+            layout="@layout/customer_drawable"/>
 
     </RelativeLayout>
 
