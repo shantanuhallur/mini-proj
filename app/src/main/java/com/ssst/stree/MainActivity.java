@@ -1,6 +1,7 @@
 package com.ssst.stree;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -13,6 +14,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -33,27 +35,39 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigation;
     private TextView profile;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(checkSelfPermission(Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED )
+        {Toast.makeText(this,"Thank you for granting permissions for Lifesaving Security Module...!!!",Toast.LENGTH_LONG).show();}
+        else {
+            requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+
+        }
 
 
-        //Assign Variables
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         profile = findViewById(R.id.profile);
     }
 
-    public void SoS(View view) {
+     @RequiresApi(api = Build.VERSION_CODES.M)
+     public void SoS(View view) {
+        if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED) {
+            String message = "Test";
+            String number = "+919665308970";
 
-        String message = "Test";
-        String number = "+919665308970";
-
-        SmsManager mySms = SmsManager.getDefault();
-        mySms.sendTextMessage(number,null,message,null,null);
+            SmsManager mySms = SmsManager.getDefault();
+            mySms.sendTextMessage(number, null, message, null, null);
+        }
+        else{
+            requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
+        }
 
 
     }
+
 
     public void ClickMenu(View view){
         //Open Drawer
