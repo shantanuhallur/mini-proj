@@ -20,7 +20,7 @@ public class SignUp extends AppCompatActivity {
     EditText password;
     FirebaseAuth mAuth;
     Button signUp;
-//    TextView profile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +29,10 @@ public class SignUp extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-//        View v = getLayoutInflater().inflate(R.layout.main_nav_drawer,null);
+
         email = findViewById(R.id.ettEmail);
         password = findViewById(R.id.ettPassword);
-//        profile = v.findViewById(R.id.profile);
+
         signUp = findViewById(R.id.btnRegister);
 
         signUp.setOnClickListener((new View.OnClickListener() {
@@ -58,7 +58,7 @@ public class SignUp extends AppCompatActivity {
                 } else {
                     Log.d("SignUp","Awesome");
                     // TODO : Make the page interactive on success
-                    Toast.makeText(getApplicationContext(),"Logged in",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Your Email has Been Registered !",Toast.LENGTH_SHORT).show();
                     UpdateUI();
                 }
             }
