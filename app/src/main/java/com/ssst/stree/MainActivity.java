@@ -44,16 +44,16 @@ public class MainActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile);
     }
 
-    public void SoS(View view) {
-
-        String message = "Test";
-        String number = "+919665308970";
-
-        SmsManager mySms = SmsManager.getDefault();
-        mySms.sendTextMessage(number, null, message, null, null);
-
-
-    }
+//    public void SoS(View view) {
+//
+//        String message = "Test";
+//        String number = "+919665308970";
+//
+//        SmsManager mySms = SmsManager.getDefault();
+//        mySms.sendTextMessage(number, null, message, null, null);
+//
+//
+//    }
 
     public void ClickMenu(View view) {
         //Open Drawer

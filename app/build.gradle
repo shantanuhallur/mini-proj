@@ -30,7 +30,7 @@ dependencies {
 
     implementation 'com.android.support:design:25.1.0'// for navigation (i.e design purpose)
     implementation "androidx.cardview:cardview:1.0.0"// for android 10 cardview
-    
+    implementation "androidx.viewpager2:viewpager2:1.0.0"// for tabbed view
 
 
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -39,6 +39,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.0.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
+
+    implementation 'androidx.viewpager:viewpager:1.0.0' //for tabbed view
+    implementation 'com.google.android.material:material:1.2.0' //for tabbed view
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
