@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
 
         }
-
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         profile = findViewById(R.id.profile);
     }
@@ -68,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    public void ClickMenu(View view){
+    public void ClickMenu(View view) {
         //Open Drawer
         openDrawer(drawerLayout);
     }
@@ -79,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
-    public void ClickProfile(){
+    public void ClickProfile() {
         //Closes Drawer
         closeDrawer(drawerLayout);
     }
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     public static void closeDrawer(DrawerLayout drawerLayout) {
         //close drawer layout
         //check condition
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             //When drawer is open
             //Close the drawer
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -95,44 +92,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Navigation Drawer Clickable
-    public void ClickHome(View view){
+    public void ClickHome(View view) {
         //Recreate Activity
         recreate();
     }
 
-    public void ClickAwareness(View view){
+    public void ClickAwareness(View view) {
         //Redirect activity to Awareness
         redirectActivity(this, Awareness.class);
     }
 
-    public void ClickSkill(View view){
+    public void ClickSkill(View view) {
         //redirect Activity
         redirectActivity(this, SkillDevelopment.class);
     }
 
-    public void ClickFinancial(View view){
+    public void ClickFinancial(View view) {
         //redirect Activity
         redirectActivity(this, Financial.class);
     }
 
-    public void ClickProblems(View view){
+    public void ClickProblems(View view) {
         //redirect Activity
         redirectActivity(this, Problems.class);
     }
 
     public void ClickSignIn(View view) {
         //redirect Activity
-        MainActivity.redirectActivity(this,SignIn.class);
+        MainActivity.redirectActivity(this, SignIn.class);
     }
 
     public void ClickSignUp(View view) {
         //redirect Activity
-        MainActivity.redirectActivity(this,SignUp.class);
+        MainActivity.redirectActivity(this, SignUp.class);
     }
 
     public void ClickSignOut(View view) {
         FirebaseAuth.getInstance().signOut();
-        Toast.makeText(getApplicationContext(),"Signed Out",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Signed Out", Toast.LENGTH_SHORT).show();
         displayName();
     }
 
@@ -174,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         displayName();
     }
 
-    private void displayName () {
+    private void displayName(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             profile.setText(user.getEmail());
