@@ -81,35 +81,6 @@ public class addProduct extends AppCompatActivity {
         this.finish();
     }
 }
-
-/*HashMap<String,String> seller = new HashMap<>();
-        seller.put("email",currentUser.getEmail());
-        seller.put("name",businessName);
-        seller.put("contactNumber",businessContact);
-        seller.put("UPINumber",businessUpi);
-        seller.put("accountNumber",businessAcc);
-        seller.put("IFSCCode",businessIFSC);
-        seller.put("bankName",bankName);
-        seller.put("bankBranchName",bankBranch);
-        seller.put("bankAccountHolderName",bankAccHolderName);
-        seller.put("bankAddress",bankAddress);
-        seller.put("info",businessInformation);
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("sellers").add(seller).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Log.d("addBusiness", "\u001B31;1mDocumentSnapshot added with ID: " + documentReference.getId());
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("addBusiness", "\u001B31;1mError adding document", e);
-            }
-        });*/
-
-
-
 /*
 import android.app.ProgressDialog;
 import android.content.Intent;
