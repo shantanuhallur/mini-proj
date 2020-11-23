@@ -21,7 +21,7 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center_horizontal"
-        android:textColor="#636363"
+        android:textColor="@color/colorPrimary"
         android:text="your profile"/>
     
     <View
@@ -29,7 +29,9 @@
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:background="#636363"/>
+        android:background="@color/colorPrimary"/>
+<!--        android:background="#636363"/>-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/home"
+            android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -75,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/awareness"
+            android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -100,6 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/skill_development"
+            android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -125,6 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/financial_empowerment"
+            android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -150,11 +156,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/problems"
+            android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorPrimary"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -176,6 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/sign_up"
+            android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -202,6 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/sign_in"
+            android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -228,6 +244,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/sign_out"
+            android:textColor="@color/colorPrimary"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
