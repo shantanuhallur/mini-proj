@@ -153,6 +153,11 @@ public class Financial extends AppCompatActivity {
         MainActivity.redirectActivity(this, addBusiness.class);
     }
 
+    public void ClickAllProducts(View view){
+        //redirect Activity Seller
+        MainActivity.redirectActivity(this, sellerView.class);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
