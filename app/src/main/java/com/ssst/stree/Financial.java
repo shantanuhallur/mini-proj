@@ -110,6 +110,13 @@ public class Financial extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            MainActivity.redirectActivity(this,SignIn.class);
+        }
+
+        Log.d("Financial","" + FirebaseAuth.getInstance().getCurrentUser());
+
         setContentView(R.layout.activity_financial);
 
         //Assign Variable

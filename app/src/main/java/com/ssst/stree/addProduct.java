@@ -1,5 +1,6 @@
 package com.ssst.stree;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -7,15 +8,33 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class addProduct extends AppCompatActivity {
 
-    private EditText product_name,product_price,product_information,product_category;
+    private EditText product_name;
+    private EditText product_price;
+    private EditText product_information;
+    private EditText product_category;
+    private FirebaseUser currentUser;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        db = FirebaseFirestore.getInstance();
 
         product_name = findViewById(R.id.productName);
         product_price = findViewById(R.id.productPrice);
@@ -33,19 +52,61 @@ public class addProduct extends AppCompatActivity {
     }
 
     private void submit() {
-        String productName, productPrice,productInformation,productCateory;
+        String productName, productPrice,productInformation,productCategory;
 
         productName = this.product_name.getText().toString().trim();
         productPrice = this.product_price.getText().toString().trim();
         productInformation = this.product_information.getText().toString().trim();
-        productCateory = this.product_category.getText().toString().trim();
+        productCategory = this.product_category.getText().toString().trim();
 
-        Log.d("check", productName);
+        HashMap<String,String> product = new HashMap<>();
+        product.put("email",currentUser.getEmail());
+        product.put("name",productName);
+        product.put("price",productPrice);
+        product.put("info",productInformation);
+        product.put("category",productCategory);
 
+        db.collection("products").add(product).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d("addBusiness", "\u001B31;1mDocumentSnapshot added with ID: " + documentReference.getId());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("addBusiness", "\u001B31;1mError adding document", e);
+            }
+        });
+        Toast.makeText(getApplicationContext(),"Product Added",Toast.LENGTH_SHORT).show();
+        this.finish();
     }
-
-
 }
+
+/*HashMap<String,String> seller = new HashMap<>();
+        seller.put("email",currentUser.getEmail());
+        seller.put("name",businessName);
+        seller.put("contactNumber",businessContact);
+        seller.put("UPINumber",businessUpi);
+        seller.put("accountNumber",businessAcc);
+        seller.put("IFSCCode",businessIFSC);
+        seller.put("bankName",bankName);
+        seller.put("bankBranchName",bankBranch);
+        seller.put("bankAccountHolderName",bankAccHolderName);
+        seller.put("bankAddress",bankAddress);
+        seller.put("info",businessInformation);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("sellers").add(seller).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d("addBusiness", "\u001B31;1mDocumentSnapshot added with ID: " + documentReference.getId());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("addBusiness", "\u001B31;1mError adding document", e);
+            }
+        });*/
 
 
 
