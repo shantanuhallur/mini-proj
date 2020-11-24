@@ -1,21 +1,31 @@
 package com.ssst.stree;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ssst.stree.classes.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class sellerView extends AppCompatActivity {
 
         List<Product> productList;
-
         //the recyclerview
         RecyclerView recyclerView;
 
@@ -26,41 +36,34 @@ public class sellerView extends AppCompatActivity {
             //initializing the productlist
             productList = new ArrayList<>();
 
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("products").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                        Log.d("sellerView", queryDocumentSnapshot.getId() + " => " + queryDocumentSnapshot.getData());
+                        Product product = new Product(
+                                Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("price")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("category")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("info")).toString()
+                        );
+                        Log.d("sellerView",product.toString());
+                        productList.add(product);
+                    }
 
-            //adding some items to our list
-            productList.add(
-                    new Product(
-                            "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
-                            "60000",
-                            "ABC",
-                            "ABC"));
+                    recyclerView = findViewById(R.id.recyclerSellerView);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-            productList.add(
-                    new Product(
-                            "Dell Inspiron 7000 Core i5 7th Gen - (8 GB/1 TB HDD/Windows 10 Home)",
-                            "60000",
-                            "Categories123",
-                            "INFO"));
+                    seller_adapter adapter;
+                    //creating recyclerview adapter
+                    adapter = new seller_adapter(getApplicationContext(), productList);
 
-            productList.add(
-                    new Product(
-                            "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
-                            "60000",
-                            "ABC",
-                            "ABC"));
-
-            //getting the recyclerview from xml
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerSellerView);
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-             RecyclerView.Adapter adapter;
-            //creating recyclerview adapter
-            adapter = new seller_adapter(this, productList);
-
-            //setting adapter to recyclerview
-            recyclerView.setAdapter(adapter);
+                    //setting adapter to recyclerview
+                    recyclerView.setAdapter(adapter);
+                }
+            });
         }
-
-
 }

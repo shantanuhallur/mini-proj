@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,7 +12,7 @@
         android:layout_height="120dp"
         android:layout_margin="16dp"
         android:onClick="ClickProfile"
-        android:src="@drawable/ic_profile"/>
+        app:srcCompat="@drawable/ic_profile"/>
 
     <TextView
         android:id="@+id/profile"
@@ -41,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:src="@drawable/home"
+            app:srcCompat="@drawable/home"
             android:layout_marginLeft="16dp" />
 
         <TextView
@@ -67,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/awareness"/>
+            app:srcCompat="@drawable/awareness"/>
 
         <TextView
             android:layout_width="0dp"
@@ -92,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/skilldev"/>
+            app:srcCompat="@drawable/skilldev"/>
 
         <TextView
             android:layout_width="0dp"
@@ -117,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/financialemp"/>
+            app:srcCompat="@drawable/financialemp"/>
 
         <TextView
             android:layout_width="0dp"
@@ -142,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/problem"/>
+            app:srcCompat="@drawable/problem"/>
 
         <TextView
             android:layout_width="0dp"
@@ -167,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/sign_up"
+            app:srcCompat="@drawable/sign_up"
             />
 
         <TextView
@@ -193,7 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/sign_in"
+            app:srcCompat="@drawable/sign_in"
             />
 
         <TextView
@@ -219,7 +220,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/sign_out"
+            app:srcCompat="@drawable/sign_out"
             />
 
         <TextView
