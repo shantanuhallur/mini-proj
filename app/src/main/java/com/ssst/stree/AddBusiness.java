@@ -26,7 +26,7 @@ import com.ssst.stree.classes.Seller;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class addBusiness extends AppCompatActivity {
+public class AddBusiness extends AppCompatActivity {
     private Button submit;
     private EditText business_name;
     private EditText business_contact;
@@ -130,7 +130,7 @@ public class addBusiness extends AppCompatActivity {
     }
 
     private void registeredContinue() {
-        MainActivity.redirectActivity(this, addProduct.class);
+        MainActivity.redirectActivity(this, AddProduct.class);
     }
 
     private void unregisteredContinue() {
@@ -174,7 +174,7 @@ public class addBusiness extends AppCompatActivity {
             }
         });
 
-        MainActivity.redirectActivity(this, addProduct.class);
+        MainActivity.redirectActivity(this, AddProduct.class);
     }
 
 

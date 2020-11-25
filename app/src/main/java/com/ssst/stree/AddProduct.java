@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
-public class addProduct extends AppCompatActivity {
+public class AddProduct extends AppCompatActivity {
 
     private EditText product_name;
     private EditText product_price;

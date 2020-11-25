@@ -1,6 +1,8 @@
 package com.ssst.stree;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,23 +20,24 @@ import java.util.List;
  */
 
 
-public class seller_adapter extends RecyclerView.Adapter<seller_adapter.ProductViewHolder> {
+public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductViewHolder> {
 
 
     //this context we will use to inflate the layout
-    private Context mCtx;
+    private final Context mCtx;
 
     //we are storing all the products in a list
-    private List<Product> productList;
+    private final List<Product> productList;
 
     //getting the context and product list with constructor
-    public seller_adapter(Context mCtx, List<Product> productList) {
+    public SellerAdapter(Context mCtx, List<Product> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
     }
 
+    @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.seller_view_card, null);
@@ -49,8 +52,8 @@ public class seller_adapter extends RecyclerView.Adapter<seller_adapter.ProductV
         //binding the data with the viewholder views
         holder.textViewTitle.setText(product.getName());
         holder.textViewShortDesc.setText(product.getInfo());
-        holder.textViewRating.setText(String.valueOf(product.getCategory()));
-        holder.textViewPrice.setText(String.valueOf(product.getPrice()));
+        holder.textViewRating.setText(product.getCategory());
+        holder.textViewPrice.setText(product.getPrice());
 
         //holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
 
@@ -63,10 +66,12 @@ public class seller_adapter extends RecyclerView.Adapter<seller_adapter.ProductV
     }
 
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
-
-        TextView textViewTitle, textViewShortDesc, textViewRating, textViewPrice;
-        ImageView imageView;
+    static class ProductViewHolder extends RecyclerView.ViewHolder {
+        private final TextView textViewTitle;
+        private final TextView textViewShortDesc;
+        private final TextView textViewRating;
+        private final TextView textViewPrice;
+        private final ImageView imageView;
 
         public ProductViewHolder(View itemView) {
             super(itemView);

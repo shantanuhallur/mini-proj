@@ -16,13 +16,12 @@
         <include
             layout="@layout/main_toolbar"/>
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCustomerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Financial Empowerment"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            tools:layout_editor_absoluteX="157dp"
+            tools:layout_editor_absoluteY="245dp"/>
 
     </LinearLayout>
 
