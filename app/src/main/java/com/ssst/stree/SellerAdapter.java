@@ -4,8 +4,11 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -73,7 +76,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
         private final TextView textViewPrice;
         private final ImageView imageView;
 
-        public ProductViewHolder(View itemView) {
+        public ProductViewHolder(final View itemView) {
             super(itemView);
 
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
@@ -81,6 +84,14 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
             textViewRating = itemView.findViewById(R.id.textViewRating);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageView);
+
+            itemView.setOnClickListener(new OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), productDetails.class));
+                }
+            });
         }
     }
 }
