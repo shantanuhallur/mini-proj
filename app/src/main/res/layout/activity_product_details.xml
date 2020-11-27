@@ -68,7 +68,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="Umbrella"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#000000"
                     android:textStyle="bold"
@@ -81,7 +80,6 @@
                     android:layout_width="86dp"
                     android:layout_height="52dp"
                     android:layout_marginTop="32dp"
-                    android:text="Rs. 600"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="#000000"
                     android:textSize="24sp"
@@ -108,7 +106,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:text="Sold By : Shardul Dharma"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -139,13 +136,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:fontFamily="sans-serif-black"
-                android:text="INFORMATION "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#939090"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pr_price" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

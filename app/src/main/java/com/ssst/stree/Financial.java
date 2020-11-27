@@ -31,6 +31,7 @@ import java.util.Objects;
 public class Financial extends AppCompatActivity {
 
     //Initialize Variable
+    public static String id;
     private DrawerLayout drawerLayout;
     private TextView profile;
     private List<Product> productList;
@@ -50,71 +51,36 @@ public class Financial extends AppCompatActivity {
 
         productList = new ArrayList<>();
 
-//        //Temp products
-        productList.add(
-                new Product(
-                        "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
-                        "60000",
-                        "ABC",
-                        "ABC"));
+        db.collection("products").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                        Log.d("sellerView", queryDocumentSnapshot.getId() + " => " + queryDocumentSnapshot.getData());
+                        Product product = new Product(
+                                queryDocumentSnapshot.getId(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("price")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("category")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("info")).toString()
+                        );
+                        productList.add(product);
+                }
 
-        productList.add(
-                new Product(
-                        "Dell Inspiron 7000 Core i5 7th Gen - (8 GB/1 TB HDD/Windows 10 Home)",
-                        "60000",
-                        "Categories123",
-                        "INFO"));
+                recyclerView = findViewById(R.id.recyclerCustomerView);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        productList.add(
-                new Product(
-                        "Apple MacBook Air Core i5 5th Gen - (8 GB/128 GB SSD/Mac OS Sierra)",
-                        "60000",
-                        "ABC",
-                        "ABC"));
+                SellerAdapter adapter;
+                //creating recyclerview adapter
+                adapter = new SellerAdapter(getApplicationContext(), productList);
 
-//        db.collection("products")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.d("Financial", document.getId() + " => " + document.getData());
-//                            }
-//                        } else {
-//                            Log.w("Financial", "Error getting documents.", task.getException());
-//                        }
-//                    }
-//                });
+                //setting adapter to recyclerview
+                recyclerView.setAdapter(adapter);
 
-//        db.collection("products")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.d("Financial", document.getId() + " => " + document.getData());
-//                                //productList.add(document.getData());
-//                            }
-//                        } else {
-//                            Log.d("Financial", "Error getting documents: ", task.getException());
-//                        }
-//                    }
-//                });
-
-        //CollectionReference all_products = db.collection('products');
-
-        recyclerView = findViewById(R.id.recyclerCustomerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-        SellerAdapter adapter;
-        //creating recyclerview adapter
-        adapter = new SellerAdapter(getApplicationContext(), productList);
-
-        //setting adapter to recyclerview
-        recyclerView.setAdapter(adapter);
+                //animation.stop()
+            }
+        });
 
         //Assign Variable
         drawerLayout = findViewById(R.id.drawer_layout);

@@ -15,22 +15,17 @@ import android.widget.TextView;
 
 
 import com.ssst.stree.classes.Product;
+import com.ssst.stree.classes.Seller;
 
 import java.util.List;
 
-/**
- * Created by Belal on 10/18/2017.
- */
-
-
 public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductViewHolder> {
-
-
     //this context we will use to inflate the layout
     private final Context mCtx;
 
     //we are storing all the products in a list
     private final List<Product> productList;
+    public static String id;
 
     //getting the context and product list with constructor
     public SellerAdapter(Context mCtx, List<Product> productList) {
@@ -57,6 +52,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
         holder.textViewShortDesc.setText(product.getInfo());
         holder.textViewRating.setText(product.getCategory());
         holder.textViewPrice.setText(product.getPrice());
+        holder.id = product.getId();
 
         //holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
 
@@ -70,6 +66,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
 
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
+        private String id;
         private final TextView textViewTitle;
         private final TextView textViewShortDesc;
         private final TextView textViewRating;
@@ -78,7 +75,6 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
 
         public ProductViewHolder(final View itemView) {
             super(itemView);
-
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
             textViewRating = itemView.findViewById(R.id.textViewRating);
@@ -86,9 +82,9 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
             imageView = itemView.findViewById(R.id.imageView);
 
             itemView.setOnClickListener(new OnClickListener(){
-
                 @Override
                 public void onClick(View view) {
+                    SellerAdapter.id = id;
                     itemView.getContext().startActivity(new Intent(itemView.getContext(), productDetails.class));
                 }
             });

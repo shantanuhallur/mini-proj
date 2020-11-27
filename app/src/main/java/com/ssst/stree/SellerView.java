@@ -33,6 +33,7 @@ public class SellerView extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_seller_view);
+            //animation.start
             //initializing the productlist
             productList = new ArrayList<>();
 
@@ -46,6 +47,7 @@ public class SellerView extends AppCompatActivity {
                         if(Objects.equals(queryDocumentSnapshot.get("email"), currentUser.getEmail())) {
                             Log.d("sellerView", queryDocumentSnapshot.getId() + " => " + queryDocumentSnapshot.getData());
                             Product product = new Product(
+                                    queryDocumentSnapshot.getId(),
                                     Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
                                     Objects.requireNonNull(queryDocumentSnapshot.get("price")).toString(),
                                     Objects.requireNonNull(queryDocumentSnapshot.get("category")).toString(),
@@ -65,6 +67,8 @@ public class SellerView extends AppCompatActivity {
 
                     //setting adapter to recyclerview
                     recyclerView.setAdapter(adapter);
+
+                    //animation.stop()
                 }
             });
         }
