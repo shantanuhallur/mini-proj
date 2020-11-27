@@ -18,26 +18,51 @@
 
     </LinearLayout>
 
+<!--Tabbed View-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="57dp">
 
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/tab_layout"-->
+<!--            app:tabTextColor="@color/colorPrimary"-->
+<!--            app:tabIndicatorColor="@color/colorPrimary"-->
+<!--            app:tabSelectedTextColor="@color/colorPrimary" />-->
+
+<!--        <androidx.viewpager.widget.ViewPager-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:id="@+id/aware_viewPager"/>-->
+
+
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tab_layout"
             app:tabTextColor="@color/colorPrimary"
-            app:tabIndicatorColor="@color/colorPrimary"
-            app:tabSelectedTextColor="@color/colorPrimary" />
+            app:tabSelectedTextColor="@color/colorPrimaryDark">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELPLINES"
+                android:id="@+id/tabHelplines"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCHEMES"
+                android:id="@+id/tabSchemes"/>
+        </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/aware_viewPager"/>
-
-
 
     </LinearLayout>
 

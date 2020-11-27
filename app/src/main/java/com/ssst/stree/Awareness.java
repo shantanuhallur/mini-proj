@@ -2,6 +2,8 @@ package com.ssst.stree;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBar.TabListener;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -9,12 +11,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,6 +35,8 @@ public class Awareness extends AppCompatActivity {
     private TextView profile;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private TabItem tabHelplines;
+    private TabItem tabSchemes;
 
 
     @Override
@@ -42,83 +50,254 @@ public class Awareness extends AppCompatActivity {
         profile = findViewById(R.id.profile);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.aware_viewPager);
+        tabHelplines = findViewById(R.id.tabHelplines);
+        tabSchemes = findViewById(R.id.tabSchemes);
 
-        //Initialize ArrayList of different Tabs
-        ArrayList<String> tabs = new ArrayList<>();
+        //Initializing & Assigning PagerAdapter
+        final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
 
-        //Add Tabs name
-        tabs.add("HelpLines");
-        tabs.add("Schemes");
-        
-        //Prepare ViewPager
-        PrepareViewPager(viewPager, tabs);
+        //tabLayout.setupWithViewPager(viewPager);
+        viewPager.setAdapter(pagerAdapter);
 
-        //Setup with vewPager
-        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+
+                if(tab.getPosition()==0 || tab.getPosition()==1){
+                    pagerAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        //Schemes
+        ImageView betiBachavPadhav = findViewById(R.id.bet_bachav_padhav);
+
+//        betiBachavPadhav.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openBetiBachavPadhav();
+//            }
+//        });
     }
 
-    //Tabbed View
-    private void PrepareViewPager(ViewPager viewPager, ArrayList<String> tabs) {
-        //Initialize Main Adapter
-        MainAdapter adapter = new MainAdapter(getSupportFragmentManager());
-
-        //Initializing Awareness Fragment
-        AwarenessFragment fragment = new AwarenessFragment();
-        for(int i = 0;i<tabs.size();i++){
-            //Initializing Bundle
-            Bundle bundle = new Bundle(); //Used to pass Data between Activities
-
-            //Put String
-            bundle.putString("title", tabs.get(i));
-
-            //Set Argument
-            fragment.setArguments(bundle);
-
-            //Adding fragment
-            adapter.addFragment(fragment,tabs.get(i));
-
-            //Define new Fragment
-            fragment = new AwarenessFragment();
-        }
-        //Setting Adapter
-        viewPager.setAdapter(adapter);
+    //HelpLines Number Dial Functions
+    public void dialDomesticAbuse(View view){
+        String number = "tel:181";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
     }
 
-    private class MainAdapter extends FragmentPagerAdapter {
-        //Initialize Array List
-        ArrayList<String> arrayList = new ArrayList<>();
-        List<Fragment> fragmentList = new ArrayList<>();
+    public void dialDistress(View view){
+        String number = "tel:1091";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
 
-        //Constructor
-        public void addFragment(Fragment fragment, String title){
-            //Title
-            arrayList.add(title);
-            //Fragment
-            fragmentList.add(fragment);
+    public void dialPolice(View view){
+        String number = "tel:100";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialCommisionWomen1(View view){
+        String number = "tel:011-26942369";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialCommisionWomen2(View view){
+        String number = "tel:26944754";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMahaWomenHelp1(View view){
+        String number = "tel:022-26111103";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMahaWomenHelp2(View view){
+        String number = "tel:1298";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMahaWomenHelp3(View view){
+        String number = "tel:103";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMahaCommision1(View view){
+        String number = "tel:07477722424";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMahaCommision2(View view){
+        String number = "tel:022-26592707";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMumbaiPolice1(View view){
+        String number = "tel:022-22633333";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMumbaiPolice2(View view){
+        String number = "tel:22620111";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMumbaiRailwayPolice(View view){
+        String number = "tel:9833331111";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMaljisMaha1(View view){
+        String number = "tel:022-26661252";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    public void dialMaljisMaha2(View view){
+        String number = "tel:26662394";
+        Uri uri = Uri.parse(number);
+        Intent intent = new Intent(Intent.ACTION_DIAL,uri);
+        startActivity(intent);
+    }
+
+    //Schemes Open Link Functions
+    public void openBetiBachavPadhav(View view) {
+        String url = "https://wcd.nic.in/schemes/beti-bachao-beti-padhao-scheme";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
         }
+    }
 
-        public MainAdapter(@NonNull FragmentManager fm) {
-            super(fm);
+    public void openWomenHhelpline(View view) {
+        String url = "https://wcd.nic.in/schemes/women-helpline-scheme-2";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
         }
+    }
 
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            //return fragment position
-            return fragmentList.get(position);
+    public void openUjwala(View view) {
+        String url = "https://wcd.nic.in/schemes/ujjawala-comprehensive-scheme-prevention-trafficking-and-rescue-rehabilitation-and-re";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
         }
+    }
 
-        @Override
-        public int getCount() {
-            //return fragmentList size
-            return fragmentList.size();
+    public void openMahilaShaktiKendras(View view) {
+        String url = "https://wcd.nic.in/schemes/mahila-shakti-kendras-msk";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
         }
+    }
 
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            //return arrayList position
-            return arrayList.get(position);
+    public void openSwadharGreh(View view) {
+        String url = "https://wcd.nic.in/schemes/swadhar-greh-scheme-women-difficult-circumstances";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void openWomenEntrepreneur(View view) {
+        String url = "https://www.startupindia.gov.in/content/sih/en/government-schemes/Wep.html";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void openStandupIndia(View view) {
+        String url = "https://www.standupmitra.in/Home/SubsidySchemesForWomen";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void openMahilaPolice(View view) {
+        String url = "https://wcd.nic.in/schemes/mahila-police-volunteers";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void openWorkingWomenHostel(View view) {
+        String url = "https://wcd.nic.in/schemes/working-women-hostel";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void openNirbhaya(View view) {
+        String url = "https://wcd.nic.in/schemes/nirbhaya";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
         }
     }
 
@@ -197,6 +376,4 @@ public class Awareness extends AppCompatActivity {
             profile.setText("Your Profile");
         }
     }
-
-
 }
