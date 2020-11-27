@@ -10,10 +10,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
+import android.media.VolumeAutomation;
+import android.media.VolumeProvider;
+import android.media.VolumeShaper;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -27,8 +33,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.File;
 
+public class MainActivity extends AppCompatActivity {
+    float volume =  1;
+    MediaPlayer player;
+    MediaRecorder recorder;
     //Variables are initialized
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -50,8 +60,22 @@ public class MainActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile);
     }
 
+
      @RequiresApi(api = Build.VERSION_CODES.M)
      public void SoS(View view) {
+
+
+
+
+        //buzzer sound
+        if(player==null){
+            player = MediaPlayer.create(this,R.raw.buzzer);
+        }
+        player.start();
+        player.setLooping(true);
+        player.setVolume(volume,volume);
+
+
         if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED) {
             String message = "Test";
             String number = "+919665308970";
