@@ -54,11 +54,9 @@ public class SignUp extends AppCompatActivity {
                 if(!task.isSuccessful()) {
                     Log.d("SignUp","Something wrong");
                     Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
-                    // TODO : Make the page interactive on failure
                 } else {
                     Log.d("SignUp","Awesome");
-                    // TODO : Make the page interactive on success
-                    Toast.makeText(getApplicationContext(),"Logged in",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Your Email has Been Registered !",Toast.LENGTH_SHORT).show();
                     UpdateUI();
                 }
             }

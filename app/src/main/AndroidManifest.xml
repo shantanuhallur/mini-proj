@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".seller_details"></activity>
-        <activity android:name=".productDetails" />
+        <activity android:name=".SellerDetails"></activity>
+        <activity android:name=".ProductDetails" />
         <activity android:name=".SellerView" />
         <activity android:name=".AddBusiness" />
         <activity android:name=".AddProduct" />

@@ -64,28 +64,27 @@ public class AddBusiness extends AppCompatActivity {
 
         submit = findViewById(R.id.continueButton);
 
-        db.collection("sellers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("sellers").whereEqualTo("email",currentUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()) {
+                    boolean flag = false;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        boolean flag = false;
                         for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                            if(Objects.equals(document.get("email"), currentUser.getEmail())) {
                                 Log.d("addBusiness", document.getId() + " => " + document.getData());
                                 Log.d("addBusiness","REGISTERED");
                                 String businessName, businessContact, businessInformation, businessUpi, businessAcc, businessIFSC;
                                 String bankName, bankBranch, bankAccHolderName, bankAddress;
 
-                                businessName = Objects.requireNonNull(document.get("name")).toString();
-                                businessContact = Objects.requireNonNull(document.get("contactNumber")).toString();
-                                businessInformation = Objects.requireNonNull(document.get("info")).toString();
-                                businessUpi = Objects.requireNonNull(document.get("UPINumber")).toString();
-                                businessAcc = Objects.requireNonNull(document.get("accountNumber")).toString();
-                                businessIFSC = Objects.requireNonNull(document.get("IFSCCode")).toString();
+                                businessName = Objects.requireNonNull(document.get("businessName")).toString();
+                                businessContact = Objects.requireNonNull(document.get("businessContact")).toString();
+                                businessInformation = Objects.requireNonNull(document.get("businessInformation")).toString();
+                                businessUpi = Objects.requireNonNull(document.get("businessUpi")).toString();
+                                businessAcc = Objects.requireNonNull(document.get("businessAcc")).toString();
+                                businessIFSC = Objects.requireNonNull(document.get("businessIFSC")).toString();
                                 bankName = Objects.requireNonNull(document.get("bankName")).toString();
-                                bankBranch = Objects.requireNonNull(document.get("bankBranchName")).toString();
-                                bankAccHolderName = Objects.requireNonNull(document.get("bankAccountHolderName")).toString();
+                                bankBranch = Objects.requireNonNull(document.get("bankBranch")).toString();
+                                bankAccHolderName = Objects.requireNonNull(document.get("bankAccHolderName")).toString();
                                 bankAddress = Objects.requireNonNull(document.get("bankAddress")).toString();
 
                                 seller = new Seller(currentUser.getEmail(), businessName, businessContact, businessInformation, businessUpi, businessAcc, businessIFSC, bankName, bankBranch, bankAccHolderName, bankAddress);
@@ -121,7 +120,6 @@ public class AddBusiness extends AppCompatActivity {
                             });
                         }
                     }
-                }
                 else {
                     Log.w("addBusiness", "Error getting documents.", task.getException());
                 }
@@ -151,16 +149,16 @@ public class AddBusiness extends AppCompatActivity {
 
         HashMap<String,String> seller = new HashMap<>();
         seller.put("email",currentUser.getEmail());
-        seller.put("name",businessName);
-        seller.put("contactNumber",businessContact);
-        seller.put("UPINumber",businessUpi);
-        seller.put("accountNumber",businessAcc);
-        seller.put("IFSCCode",businessIFSC);
+        seller.put("businessName",businessName);
+        seller.put("businessContact",businessContact);
+        seller.put("businessUpi",businessUpi);
+        seller.put("businessAcc",businessAcc);
+        seller.put("businessIFSC",businessIFSC);
         seller.put("bankName",bankName);
-        seller.put("bankBranchName",bankBranch);
-        seller.put("bankAccountHolderName",bankAccHolderName);
+        seller.put("bankBranch",bankBranch);
+        seller.put("bankAccHolderName",bankAccHolderName);
         seller.put("bankAddress",bankAddress);
-        seller.put("info",businessInformation);
+        seller.put("businessInformation",businessInformation);
 
         db.collection("sellers").add(seller).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override

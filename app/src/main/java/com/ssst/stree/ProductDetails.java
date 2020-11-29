@@ -1,18 +1,14 @@
 package com.ssst.stree;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -20,7 +16,7 @@ import com.ssst.stree.classes.Product;
 
 import java.util.Objects;
 
-public class productDetails extends AppCompatActivity {
+public class ProductDetails extends AppCompatActivity {
 
     private String id;
     private Product product;
@@ -67,7 +63,7 @@ public class productDetails extends AppCompatActivity {
     }
 
     public void sellerDetails(View view){
-        MainActivity.redirectActivity(this,seller_details.class);
+        MainActivity.redirectActivity(this, SellerDetails.class);
     }
 
 }

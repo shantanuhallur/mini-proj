@@ -19,7 +19,6 @@ public class SignIn extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private FirebaseAuth mAuth;
-//    private TextView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +27,8 @@ public class SignIn extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-//        View v = getLayoutInflater().inflate(R.layout.main_nav_drawer,null);
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
-//        profile = v.findViewById(R.id.profile);
         Button signIn = findViewById(R.id.btnLogin);
 
 
@@ -53,12 +50,10 @@ public class SignIn extends AppCompatActivity {
                 Log.d("SignIn","sign in : " + task.isSuccessful());
                 if(!task.isSuccessful()) {
                     Log.d("SignIn","Something wrong");
-                    // TODO : Make the page interactive on failure
                     Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("SignIn","Awesome");
-                    // TODO : Make the page interactive on success
-                    Toast.makeText(getApplicationContext(),"Signed up",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Logged In Successfully!!",Toast.LENGTH_SHORT).show();
                     UpdateUI();
                 }
             }

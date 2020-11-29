@@ -6,10 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".SellerView">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerSellerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="245dp" />
+        android:orientation="vertical">
+
+            <include
+                layout="@layout/main_toolbar"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerSellerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="157dp"
+                tools:layout_editor_absoluteY="245dp" />
+
+    </LinearLayout>
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:background="@color/colorPrimary">-->
+
+<!--        <include layout="@layout/customer_drawable" />-->
+
+<!--    </RelativeLayout>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

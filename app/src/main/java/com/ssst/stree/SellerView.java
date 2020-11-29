@@ -21,9 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 public class SellerView extends AppCompatActivity {
-
         List<Product> productList;
         //the recyclerview
         RecyclerView recyclerView;
@@ -39,22 +37,20 @@ public class SellerView extends AppCompatActivity {
 
             currentUser = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("products").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            db.collection("products").whereEqualTo("email",currentUser.getEmail()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-                        if(Objects.equals(queryDocumentSnapshot.get("email"), currentUser.getEmail())) {
-                            Log.d("sellerView", queryDocumentSnapshot.getId() + " => " + queryDocumentSnapshot.getData());
-                            Product product = new Product(
-                                    queryDocumentSnapshot.getId(),
-                                    Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
-                                    Objects.requireNonNull(queryDocumentSnapshot.get("price")).toString(),
-                                    Objects.requireNonNull(queryDocumentSnapshot.get("category")).toString(),
-                                    Objects.requireNonNull(queryDocumentSnapshot.get("info")).toString()
-                            );
-                            productList.add(product);
-                        }
+                        Log.d("sellerView", queryDocumentSnapshot.getId() + " => " + queryDocumentSnapshot.getData());
+                        Product product = new Product(
+                                queryDocumentSnapshot.getId(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("price")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("category")).toString(),
+                                Objects.requireNonNull(queryDocumentSnapshot.get("info")).toString()
+                        );
+                        productList.add(product);
                     }
 
                     recyclerView = findViewById(R.id.recyclerSellerView);

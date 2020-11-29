@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 
 import com.ssst.stree.classes.Product;
-import com.ssst.stree.classes.Seller;
 
 import java.util.List;
 
@@ -85,7 +84,7 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
                 @Override
                 public void onClick(View view) {
                     SellerAdapter.id = id;
-                    itemView.getContext().startActivity(new Intent(itemView.getContext(), productDetails.class));
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), ProductDetails.class));
                 }
             });
         }

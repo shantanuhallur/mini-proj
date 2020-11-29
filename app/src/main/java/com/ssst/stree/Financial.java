@@ -87,11 +87,6 @@ public class Financial extends AppCompatActivity {
         profile = findViewById(R.id.profile);
     }
 
-//    public void showDetails(View view){
-//        //show product details
-//        MainActivity.redirectActivity(this, productDetails.class);
-//    }
-
     public void ClickMenu(View view){
         //Open Drawer
         MainActivity.openDrawer(drawerLayout);
