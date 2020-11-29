@@ -71,55 +71,52 @@ public class AddBusiness extends AppCompatActivity {
                     boolean flag = false;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                Log.d("addBusiness", document.getId() + " => " + document.getData());
-                                Log.d("addBusiness","REGISTERED");
-                                String businessName, businessContact, businessInformation, businessUpi, businessAcc, businessIFSC;
-                                String bankName, bankBranch, bankAccHolderName, bankAddress;
+                            String businessName, businessContact, businessInformation, businessUpi, businessAcc, businessIFSC;
+                            String bankName, bankBranch, bankAccHolderName, bankAddress;
 
-                                businessName = Objects.requireNonNull(document.get("businessName")).toString();
-                                businessContact = Objects.requireNonNull(document.get("businessContact")).toString();
-                                businessInformation = Objects.requireNonNull(document.get("businessInformation")).toString();
-                                businessUpi = Objects.requireNonNull(document.get("businessUpi")).toString();
-                                businessAcc = Objects.requireNonNull(document.get("businessAcc")).toString();
-                                businessIFSC = Objects.requireNonNull(document.get("businessIFSC")).toString();
-                                bankName = Objects.requireNonNull(document.get("bankName")).toString();
-                                bankBranch = Objects.requireNonNull(document.get("bankBranch")).toString();
-                                bankAccHolderName = Objects.requireNonNull(document.get("bankAccHolderName")).toString();
-                                bankAddress = Objects.requireNonNull(document.get("bankAddress")).toString();
+                            businessName = Objects.requireNonNull(document.get("businessName")).toString();
+                            businessContact = Objects.requireNonNull(document.get("businessContact")).toString();
+                            businessInformation = Objects.requireNonNull(document.get("businessInformation")).toString();
+                            businessUpi = Objects.requireNonNull(document.get("businessUpi")).toString();
+                            businessAcc = Objects.requireNonNull(document.get("businessAcc")).toString();
+                            businessIFSC = Objects.requireNonNull(document.get("businessIFSC")).toString();
+                            bankName = Objects.requireNonNull(document.get("bankName")).toString();
+                            bankBranch = Objects.requireNonNull(document.get("bankBranch")).toString();
+                            bankAccHolderName = Objects.requireNonNull(document.get("bankAccHolderName")).toString();
+                            bankAddress = Objects.requireNonNull(document.get("bankAddress")).toString();
 
-                                seller = new Seller(currentUser.getEmail(), businessName, businessContact, businessInformation, businessUpi, businessAcc, businessIFSC, bankName, bankBranch, bankAccHolderName, bankAddress);
+                            seller = new Seller(currentUser.getEmail(), businessName, businessContact, businessInformation, businessUpi, businessAcc, businessIFSC, bankName, bankBranch, bankAccHolderName, bankAddress);
 
-                                business_name.setText(businessName);
-                                business_contact.setText(businessContact);
-                                business_information.setText(businessInformation);
-                                business_upi.setText(businessUpi);
-                                business_acc.setText(businessAcc);
-                                business_IFSC.setText(businessIFSC);
-                                bank_name.setText(bankName);
-                                bank_branch.setText(bankBranch);
-                                bank_acc_holder_name.setText(bankAccHolderName);
-                                bank_address.setText(bankAddress);
-
-                                submit.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        registeredContinue();
-                                    }
-                                });
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if(!flag) {
-                            Log.d("addBusiness","UNREGISTERED");
+                            business_name.setText(businessName);
+                            business_contact.setText(businessContact);
+                            business_information.setText(businessInformation);
+                            business_upi.setText(businessUpi);
+                            business_acc.setText(businessAcc);
+                            business_IFSC.setText(businessIFSC);
+                            bank_name.setText(bankName);
+                            bank_branch.setText(bankBranch);
+                            bank_acc_holder_name.setText(bankAccHolderName);
+                            bank_address.setText(bankAddress);
                             submit.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    unregisteredContinue();
+                                    registeredContinue();
                                 }
                             });
+                            flag = true;
+                            break;
                         }
                     }
+                    if(!flag) {
+                        Log.d("addBusiness","UNREGISTERED");
+                        submit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                unregisteredContinue();
+                            }
+                        });
+                    }
+                }
                 else {
                     Log.w("addBusiness", "Error getting documents.", task.getException());
                 }

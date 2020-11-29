@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.TextView;
@@ -21,9 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Variables are initialized
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle toggle;
-    private NavigationView navigation;
     private TextView profile;
+    private LoadingBar loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

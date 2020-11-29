@@ -19,6 +19,7 @@ public class SignIn extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private FirebaseAuth mAuth;
+    private LoadingBar loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class SignIn extends AppCompatActivity {
         password = findViewById(R.id.etPassword);
         Button signIn = findViewById(R.id.btnLogin);
 
+        loadingBar = new LoadingBar(SignIn.this);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +43,7 @@ public class SignIn extends AppCompatActivity {
     }
 
     public void signIn() {
+        loadingBar.showDialog();
         String email = this.email.getText().toString().trim();
         String password = this.password.getText().toString().trim();
 
@@ -50,9 +53,11 @@ public class SignIn extends AppCompatActivity {
                 Log.d("SignIn","sign in : " + task.isSuccessful());
                 if(!task.isSuccessful()) {
                     Log.d("SignIn","Something wrong");
+                    loadingBar.hideDialog();
                     Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("SignIn","Awesome");
+                    loadingBar.hideDialog();
                     Toast.makeText(getApplicationContext(),"Logged In Successfully!!",Toast.LENGTH_SHORT).show();
                     UpdateUI();
                 }
