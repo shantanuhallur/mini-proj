@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +24,7 @@ public class productDetails extends AppCompatActivity {
 
     private String id;
     private Product product;
-    private String email;
+    public static String email;
     private TextView name;
     private TextView price;
     private TextView seller_name;
@@ -64,4 +65,9 @@ public class productDetails extends AppCompatActivity {
             }
         });
     }
+
+    public void sellerDetails(View view){
+        MainActivity.redirectActivity(this,seller_details.class);
+    }
+
 }
