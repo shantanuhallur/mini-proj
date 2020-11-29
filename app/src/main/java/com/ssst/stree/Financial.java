@@ -29,13 +29,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Financial extends AppCompatActivity {
-
-    //Initialize Variable
     public static String id;
     private DrawerLayout drawerLayout;
     private TextView profile;
     private List<Product> productList;
-    //the recyclerview
     private RecyclerView recyclerView;
 
     @Override

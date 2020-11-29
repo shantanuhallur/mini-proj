@@ -17,7 +17,6 @@ import com.ssst.stree.classes.Seller;
 import java.util.Objects;
 
 public class SellerDetails extends AppCompatActivity {
-
     private TextView sellName,sellCon,sellUPI,bankSellBranch,bankSellHolderName,accNoSell,IFSCSell,infoSell,bankSellName;
     private Seller seller;
     private String b_email;
