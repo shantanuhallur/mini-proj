@@ -3,6 +3,7 @@ package com.ssst.stree;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -63,7 +64,8 @@ public class ProductDetails extends AppCompatActivity {
     }
 
     public void sellerDetails(View view){
-        MainActivity.redirectActivity(this, SellerDetails.class);
+        Intent intent = new Intent(this, SellerDetails.class);
+        startActivity(intent);
     }
 
 }

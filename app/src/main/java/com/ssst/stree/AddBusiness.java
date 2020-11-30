@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -97,12 +98,7 @@ public class AddBusiness extends AppCompatActivity {
                             bank_branch.setText(bankBranch);
                             bank_acc_holder_name.setText(bankAccHolderName);
                             bank_address.setText(bankAddress);
-                            submit.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    registeredContinue();
-                                }
-                            });
+                            registeredContinue();
                             flag = true;
                             break;
                         }
@@ -125,7 +121,8 @@ public class AddBusiness extends AppCompatActivity {
     }
 
     private void registeredContinue() {
-        MainActivity.redirectActivity(this, AddProduct.class);
+        Intent intent = new Intent(this ,AddProduct.class);
+        startActivity(intent);
     }
 
     private void unregisteredContinue() {
@@ -169,8 +166,7 @@ public class AddBusiness extends AppCompatActivity {
             }
         });
 
-        MainActivity.redirectActivity(this, AddProduct.class);
+        Intent intent = new Intent(this ,AddProduct.class);
+        startActivity(intent);
     }
-
-
 }

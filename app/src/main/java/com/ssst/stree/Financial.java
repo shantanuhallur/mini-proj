@@ -7,6 +7,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,7 +43,8 @@ public class Financial extends AppCompatActivity {
         setContentView(R.layout.activity_financial);
 
         if(FirebaseAuth.getInstance().getCurrentUser() == null) {
-            MainActivity.redirectActivity(this,SignIn.class);
+            Intent intent = new Intent(this , SignIn.class);
+            startActivity(intent);
         }
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -101,22 +104,31 @@ public class Financial extends AppCompatActivity {
 
     public void ClickOrders(View view){
         //Redirect activity to Your Orders xml
-        //MainActivity.redirectActivity(this, SkillDevelopment.class);
+        //Financial.redirectActivity(this, SkillDevelopment.class);
     }
 
     public void ClickCart(View view){
         //Redirect activity to Your Cart xml
-        //MainActivity.redirectActivity(this, SkillDevelopment.class);
+        //Financial.redirectActivity(this, SkillDevelopment.class);
     }
 
     public void ClickSell(View view){
         //redirect Activity Seller
-        MainActivity.redirectActivity(this, AddBusiness.class);
+        Financial.redirectActivity(this, AddBusiness.class);
     }
 
     public void ClickAllProducts(View view){
         //redirect Activity Seller
-        MainActivity.redirectActivity(this, SellerView.class);
+        Financial.redirectActivity(this, SellerView.class);
+    }
+
+    public static void redirectActivity(Activity activity, Class aClass) {
+        //Initialize Intent
+        Intent intent = new Intent(activity, aClass);
+        //set flag
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //start activity
+        activity.startActivity(intent);
     }
 
     @Override
