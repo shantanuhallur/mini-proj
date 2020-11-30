@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/NavBar">
-    
+
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_margin="16dp"
-        android:onClick="ClickProfile"
-        app:srcCompat="@drawable/ic_profile"/>
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_margin="16dp"
+    android:onClick="ClickProfile"
+    app:srcCompat="@drawable/ic_profile"/>
 
     <TextView
         android:id="@+id/profile"
@@ -22,17 +22,14 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center_horizontal"
-        android:textColor="@color/colorPrimary"
-        android:text="your profile"/>
-    
+        android:textColor="#636363"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/colorPrimary"/>
-<!--        android:background="#636363"/>-->
-
+        android:background="#636363"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,8 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/home"
-            android:textColor="@color/colorPrimary"
+            android:text="Home"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -65,7 +61,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:onClick="ClickAwareness">
+        android:onClick="ClickLanguage">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -78,20 +74,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/awareness"
-            android:textColor="@color/colorPrimary"
+            android:text="Change Language"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#636363"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:onClick="ClickSkill">
+        android:onClick="ClickOrders">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -104,8 +106,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/skill_development"
-            android:textColor="@color/colorPrimary"
+            android:text="Your Orders"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -117,7 +118,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:onClick="ClickFinancial">
+        android:onClick="ClickCart">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -130,20 +131,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/financial_empowerment"
-            android:textColor="@color/colorPrimary"
+            android:text="Your Cart"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#636363"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:onClick="ClickProblems">
+        android:onClick="ClickAllProducts">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -156,42 +163,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/problems"
-            android:textColor="@color/colorPrimary"
-            android:padding="12dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/colorPrimary"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickSignUp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            app:srcCompat="@drawable/sign_up"
-            />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/sign_up"
-            android:textColor="@color/colorPrimary"
+            android:text="Your Products"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
@@ -203,49 +175,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:onClick="ClickSignIn">
+        android:onClick="ClickSell">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            app:srcCompat="@drawable/sign_in"
-            />
+            app:srcCompat="@drawable/problem"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/sign_in"
-            android:textColor="@color/colorPrimary"
-            android:padding="12dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickSignOut">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            app:srcCompat="@drawable/sign_out"
-            />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/sign_out"
-            android:textColor="@color/colorPrimary"
+            android:text="Sell Products"
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp" />
