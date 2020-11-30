@@ -17,4 +17,7 @@
     <string name="home">Home</string>
     <string name="sign_out">Sign Out</string>
     <string name="stree">Stree</string>
+    <string name="register">Register</string>
+    <string name="contact_seller">CONTACT  SELLER</string>
+    <string name="loading">Loading</string>
 </resources>

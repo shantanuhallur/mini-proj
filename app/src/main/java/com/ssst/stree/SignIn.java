@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,8 +23,12 @@ public class SignIn extends AppCompatActivity {
     private EditText password;
     private FirebaseAuth mAuth;
 
-    private  FirebaseUser currentUser;
+
+    private FirebaseUser currentUser;
     private TextView profile;
+
+    private LoadingBar loadingBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +40,11 @@ public class SignIn extends AppCompatActivity {
 
 
 
-//        View v = getLayoutInflater().inflate(R.layout.main_nav_drawer,null);
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
-//        profile = v.findViewById(R.id.profile);
         Button signIn = findViewById(R.id.btnLogin);
 
+        loadingBar = new LoadingBar(SignIn.this);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +55,7 @@ public class SignIn extends AppCompatActivity {
     }
 
     public void signIn() {
+        loadingBar.showDialog();
         String email = this.email.getText().toString().trim();
         String password = this.password.getText().toString().trim();
 
@@ -60,10 +65,12 @@ public class SignIn extends AppCompatActivity {
                 Log.d("SignIn","sign in : " + task.isSuccessful());
                 if(!task.isSuccessful()) {
                     Log.d("SignIn","Something wrong");
-                    // TODO : Make the page interactive on failure
+                    loadingBar.hideDialog();
+                    Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("SignIn","Awesome");
-                    // TODO : Make the page interactive on success
+                    loadingBar.hideDialog();
+                    Toast.makeText(getApplicationContext(),"Logged In Successfully!!",Toast.LENGTH_SHORT).show();
                     UpdateUI();
                 }
             }
