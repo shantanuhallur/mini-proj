@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -31,8 +33,6 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toEndOf="@id/imageView"
                 android:layout_toRightOf="@id/imageView"
-                android:onClick="showDetails"
-                android:text="@string/apple_macbook_air_core_i5_5th_gen_8_gb_128_gb_ssd_mac_os_sierra"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#000000" />
 
@@ -46,7 +46,6 @@
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/imageView"
                 android:layout_toRightOf="@id/imageView"
-                android:text="@string/_13_3_inch_256_gb"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
             <TextView
@@ -59,7 +58,6 @@
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/imageView"
                 android:layout_toRightOf="@id/imageView"
-                android:text="@string/laptop_best_laptop"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#423F3F" />
 
@@ -73,7 +71,6 @@
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/imageView"
                 android:layout_toRightOf="@id/imageView"
-                android:text="@string/inr_56990"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
 

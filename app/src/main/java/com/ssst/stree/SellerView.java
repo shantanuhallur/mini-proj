@@ -44,7 +44,6 @@ public class SellerView extends AppCompatActivity {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-                    Log.d("sellerView", queryDocumentSnapshot.getId() + " => " + queryDocumentSnapshot.getData());
                     Product product = new Product(
                             queryDocumentSnapshot.getId(),
                             Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),

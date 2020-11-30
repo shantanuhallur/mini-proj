@@ -87,6 +87,41 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
                     itemView.getContext().startActivity(new Intent(itemView.getContext(), ProductDetails.class));
                 }
             });
+            textViewTitle.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SellerAdapter.id = id;
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), ProductDetails.class));
+                }
+            });
+            textViewShortDesc.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SellerAdapter.id = id;
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), ProductDetails.class));
+                }
+            });
+            textViewRating.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SellerAdapter.id = id;
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), ProductDetails.class));
+                }
+            });
+            textViewPrice.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SellerAdapter.id = id;
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), ProductDetails.class));
+                }
+            });
+            imageView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SellerAdapter.id = id;
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), ProductDetails.class));
+                }
+            });
         }
     }
 }
