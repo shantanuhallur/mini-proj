@@ -169,4 +169,13 @@ public class AddBusiness extends AppCompatActivity {
         Intent intent = new Intent(this ,AddProduct.class);
         startActivity(intent);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(AddProduct.isAdded) {
+            AddProduct.isAdded = false;
+            this.finish();
+        }
+    }
 }

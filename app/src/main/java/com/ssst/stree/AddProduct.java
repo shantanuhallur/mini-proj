@@ -28,11 +28,14 @@ public class AddProduct extends AppCompatActivity {
     private FirebaseUser currentUser;
     private FirebaseFirestore db;
 
+    public static boolean isAdded;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
 
+        isAdded = false;
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
@@ -78,6 +81,7 @@ public class AddProduct extends AppCompatActivity {
             }
         });
         Toast.makeText(getApplicationContext(),"Product Added",Toast.LENGTH_SHORT).show();
+        isAdded = true;
         this.finish();
     }
 }
