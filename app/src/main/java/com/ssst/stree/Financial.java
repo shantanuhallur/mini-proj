@@ -1,6 +1,5 @@
 package com.ssst.stree;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,12 +14,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -45,8 +41,12 @@ public class Financial extends AppCompatActivity {
         setTitle("Financial Empowerment");
         setContentView(R.layout.activity_financial);
 
+        productList = new ArrayList<>();
+        adapter = new SellerAdapter(getApplicationContext(), productList);
+
         if(FirebaseAuth.getInstance().getCurrentUser() == null) {
             Intent intent = new Intent(this , SignIn.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
 

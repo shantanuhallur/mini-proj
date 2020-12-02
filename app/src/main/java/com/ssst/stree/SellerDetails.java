@@ -37,9 +37,6 @@ public class SellerDetails extends AppCompatActivity {
         infoSell = findViewById(R.id.infoSell);
 
         b_email = ProductDetails.email;
-
-        Log.d("seller detials", "Seller Email : "+ b_email + "\n***********************************************\n**********************");
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("sellers").whereEqualTo("email",b_email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
