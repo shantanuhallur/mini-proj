@@ -3,6 +3,8 @@ package com.ssst.stree;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -27,6 +29,186 @@ public class SkillDevelopment extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         profile = findViewById(R.id.profile);
     }
+
+
+    public void CookingIndian(View view) {
+        String url = "https://www.youtube.com/playlist?list=PL2TRHkIbO05bWHElf-onofRyMTxD6z0mP";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void CookingItalian(View view) {
+        String url = "https://www.youtube.com/playlist?list=PLjMg8wIdiWauxhlKzPO_-t_9g5InC5LhP";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void CookingContinental(View view) {
+        String url = "https://www.youtube.com/playlist?list=PLAb0Zi6EX80t0rV5VYgTIPnYEK-_88OQy";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void CookingGourmet(View view) {
+        String url = "https://www.youtube.com/playlist?list=PL_saUPZ53QaWdyhCnRQL6jH2hUjOif50Z";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void Sewing(View view) {
+        String url = "https://www.youtube.com/playlist?list=PLgIWvTIgBXeTpl2i9P9yoVb5xj-Oq1zgw";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void DigitalMarketingB(View view) {
+        String url = "https://youtu.be/SHI5X6Tre8g";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void AI(View view) {
+        String url = "https://www.youtube.com/playlist?list=PLxCzCOWd7aiHGhOHV-nwb0HR5US5GFKFI";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void ML(View view) {
+        String url = "https://youtu.be/GwIo3gDZCVQ";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void BlockChain(View view) {
+        String url = "https://youtu.be/nvw27RCTaEw";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void ARVR(View view) {
+        String url = "https://www.youtube.com/playlist?list=PLb1h4A0yB97_TeFuf9TAEah3b-VyIYzF9\n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void SelfDefenseCourse(View view) {
+        String url = "https://www.youtube.com/watch?v=ZUrr5MU4Z4Y&list=PLHfTPxnG4fWq1Wa1vAt8NXnsr9pGmGvQ3 \n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+
+    public void Taekwondo(View view) {
+        String url = "https://www.youtube.com/watch?v=F1kXuQ3QB-Y&list=PL59sCVifcXA2AT19RR60BLn3XC-mtGtEs \n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void Karate(View view) {
+        String url = "https://www.youtube.com/watch?v=VvsQDHshXm4&list=PL1dljzh80tJ960zAEnsgoCGLjpKeuTXcp \n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+    public void English(View view) {
+        String url = "https://www.youtube.com/watch?v=nWE-qmDmy20&list=PLpuxPG4TUOR5-DVxgV3EzxtecZVjmkPp9 \n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void Japanese(View view) {
+        String url = "https://www.youtube.com/watch?v=dwd_Z917XGI&list=PLbMVogVj5nJRmUlVaKDlcYHdecA_WFLVv \n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+    public void German(View view) {
+        String url = "https://www.youtube.com/watch?v=PyZtAlK9bb8&list=PLyqSpQzTE6M9JyZwer9Z6C8BfbGCWeWJK&index=1 \n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
+    public void Spanish(View view) {
+        String url = "https://www.youtube.com/watch?v=4FB1nO6ckZI&list=PLKQEL9j11yiUQ5SWdkc6ZT6A1NRoaskst \n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+    public void French(View view) {
+        String url = "https://www.youtube.com/watch?v=p1b0Wb-1DLc&list=PLQQkuSmBHMY3DnZ92-jA_u35UiXNGAcye \n";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Verify that the intent will resolve to an activity
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        }
+    }
+
 
     public void ClickMenu(View view){
         //Open Drawer

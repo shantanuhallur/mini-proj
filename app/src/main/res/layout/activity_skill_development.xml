@@ -11,21 +11,423 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp">
 
-        <include
-            layout="@layout/skill_tool_bar"/>
+    <include
+        layout="@layout/skill_tool_bar"/>
 
-        <TextView
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingEnd="10dp">
+
+
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Skill Development"
-            android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#7417F0"
+                    android:gravity="center"
+                    android:text="Cooking"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Cooking Indian"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#7417F0"
+                    android:layout_marginTop="12dp"
+                    android:onClick="CookingIndian"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Cooking Italian"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#7417F0"
+                    android:layout_marginTop="12dp"
+                    android:onClick="CookingItalian"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Cooking Continental"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#7417F0"
+                    android:layout_marginTop="12dp"
+                    android:onClick="CookingContinental"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Cooking Gourmet"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#7417F0"
+                    android:layout_marginTop="12dp"
+                    android:onClick="CookingGourmet"/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#BD2377"
+                    android:gravity="center"
+                    android:text="World of Computers"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Artificial Intelligence"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#BD2377"
+                    android:layout_marginTop="12dp"
+                    android:onClick="AI"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Machine Learning"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#BD2377"
+                    android:layout_marginTop="12dp"
+                    android:onClick="ML"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Block Chain"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#BD2377"
+                    android:layout_marginTop="12dp"
+                    android:onClick="BlockChain"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * AR/VR"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#BD2377"
+                    android:layout_marginTop="12dp"
+                    android:onClick="ARVR"/>
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#35D122"
+                    android:gravity="center"
+                    android:text="Sewing"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Sewing"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#35D122"
+                    android:layout_marginTop="12dp"
+                    android:onClick="Sewing"/>
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#EA610D"
+                    android:gravity="center"
+                    android:text="Digital Marketing"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Digital Marketing Course"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#EA610D"
+                    android:layout_marginTop="12dp"
+                    android:onClick="DigitalMarketingB"/>
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ECF52E"
+                    android:gravity="center"
+                    android:text="Self Defense"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Self Defense Course"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#ECF52E"
+                    android:layout_marginTop="12dp"
+                    android:onClick="SelfDefenseCourse"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Taekwondo"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#ECF52E"
+                    android:layout_marginTop="12dp"
+                    android:onClick="Taekwondo"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Karate"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#ECF52E"
+                    android:layout_marginTop="12dp"
+                    android:onClick="Karate"/>
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F400FF"
+                    android:gravity="center"
+                    android:text="Top 5 Languages"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * English"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#F400FF"
+                    android:layout_marginTop="12dp"
+                    android:onClick="English"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Japanese Course"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#F400FF"
+                    android:layout_marginTop="12dp"
+                    android:onClick="Japanese"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * German Course"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#F400FF"
+                    android:layout_marginTop="12dp"
+                    android:onClick="German"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * Spanish Course"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#F400FF"
+                    android:layout_marginTop="12dp"
+                    android:onClick="Spanish"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" * French"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#F400FF"
+                    android:layout_marginTop="12dp"
+                    android:onClick="French"/>
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
 
     </LinearLayout>
 
+</ScrollView>
+
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="match_parent"

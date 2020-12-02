@@ -60,7 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED) {
-            String message = "Test";
+            String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
+                    "HELP ME ...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
+                    "Latitude :- \n" +
+                    "Longitude :-";
             String number = "+919665308970";
 
             SmsManager mySms = SmsManager.getDefault();
