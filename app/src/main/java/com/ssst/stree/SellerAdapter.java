@@ -54,15 +54,18 @@ public class SellerAdapter extends RecyclerView.Adapter<SellerAdapter.ProductVie
         holder.id = product.getId();
 
         //holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
-
     }
-
 
     @Override
     public int getItemCount() {
         return productList.size();
     }
 
+    public void clear() {
+        int size = productList.size();
+        productList.clear();
+        notifyItemRangeRemoved(0,size);
+    }
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         private String id;

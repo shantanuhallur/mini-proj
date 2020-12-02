@@ -36,6 +36,8 @@ public class Financial extends AppCompatActivity {
     private TextView profile;
     private List<Product> productList;
     private RecyclerView recyclerView;
+    private SellerAdapter adapter;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,40 +50,7 @@ public class Financial extends AppCompatActivity {
             startActivity(intent);
         }
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        productList = new ArrayList<>();
-
-        db.collection("products").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-                        Log.d("sellerView", queryDocumentSnapshot.getId() + " => " + queryDocumentSnapshot.getData());
-                        Product product = new Product(
-                                queryDocumentSnapshot.getId(),
-                                Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
-                                Objects.requireNonNull(queryDocumentSnapshot.get("price")).toString(),
-                                Objects.requireNonNull(queryDocumentSnapshot.get("category")).toString(),
-                                Objects.requireNonNull(queryDocumentSnapshot.get("info")).toString()
-                        );
-                        productList.add(product);
-                }
-
-                recyclerView = findViewById(R.id.recyclerCustomerView);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-                SellerAdapter adapter;
-                //creating recyclerview adapter
-                adapter = new SellerAdapter(getApplicationContext(), productList);
-
-                //setting adapter to recyclerview
-                recyclerView.setAdapter(adapter);
-
-                //animation.stop()
-            }
-        });
+        db = FirebaseFirestore.getInstance();
 
         //Assign Variable
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -137,12 +106,40 @@ public class Financial extends AppCompatActivity {
         super.onPause();
         //Close Drawer
         MainActivity.closeDrawer(drawerLayout);
+        adapter.clear();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         displayName();
+        productList = new ArrayList<>();
+        db.collection("products").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                    Log.d("sellerView", queryDocumentSnapshot.getId() + " => " + queryDocumentSnapshot.getData());
+                    Product product = new Product(
+                            queryDocumentSnapshot.getId(),
+                            Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
+                            Objects.requireNonNull(queryDocumentSnapshot.get("price")).toString(),
+                            Objects.requireNonNull(queryDocumentSnapshot.get("category")).toString(),
+                            Objects.requireNonNull(queryDocumentSnapshot.get("info")).toString()
+                    );
+                    productList.add(product);
+                }
+
+                recyclerView = findViewById(R.id.recyclerCustomerView);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+                //creating recyclerview adapter
+                adapter = new SellerAdapter(getApplicationContext(), productList);
+                //setting adapter to recyclerview
+                recyclerView.setAdapter(adapter);
+            }
+        });
     }
 
     private void displayName() {

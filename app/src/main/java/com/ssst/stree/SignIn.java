@@ -21,8 +21,6 @@ public class SignIn extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
-    private TextView profile;
     private LoadingBar loadingBar;
 
 
@@ -32,7 +30,6 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
         Button signIn = findViewById(R.id.btnLogin);
