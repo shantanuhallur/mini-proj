@@ -8,129 +8,296 @@
     tools:context=".MainActivity"
     android:id="@+id/drawer_layout">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <include
-            layout="@layout/main_toolbar"/>
+            android:id="@+id/include2"
+            layout="@layout/main_toolbar" />
 
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="50dp"
-            android:layout_gravity="center_horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:id="@+id/aware_Card"
-                android:layout_gravity="center_vertical"
-                app:cardCornerRadius="4dp"
-                android:padding="10dp"
-                app:cardElevation="10dp"
-                android:onClick="CardAwareness">
-                <!--android:layout_marginStart="13dp"
-                android:layout_marginLeft="13dp">-->
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Awareness"
-                    tools:layout_editor_absoluteX="2dp"
-                    tools:layout_editor_absoluteY="-42dp" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:id="@+id/skill_Card"
-                android:layout_gravity="right"
-                app:cardCornerRadius="4dp"
-                android:padding="10dp"
-                app:cardElevation="10dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:onClick="CardSkill">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Skill Development"
-                    tools:layout_editor_absoluteX="2dp"
-                    tools:layout_editor_absoluteY="-42dp" />
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
         <Button
             android:id="@+id/SoS"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/sosbutton"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/sosbutton"
+            android:onClick="SoS"
             android:text="@string/sos"
-            android:onClick="SoS"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include2"
+            app:layout_constraintVertical_bias="0.524" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/aware_Card"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:onClick="CardAwareness"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/SoS"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.067"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include2"
+            app:layout_constraintVertical_bias="0.79">
 
-            android:layout_gravity="center_horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:id="@+id/financial_Card"
-                android:layout_gravity="center_vertical"
-                app:cardCornerRadius="4dp"
-                android:padding="10dp"
-                app:cardElevation="10dp"
-                android:onClick="CardFinancial">
-                <!--android:layout_marginStart="13dp"
-                android:layout_marginLeft="13dp">-->
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Financial Empowerment"
-                    tools:layout_editor_absoluteX="2dp"
-                    tools:layout_editor_absoluteY="-42dp" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:id="@+id/problems_Card"
-                android:layout_gravity="right"
-                app:cardCornerRadius="4dp"
-                android:padding="10dp"
-                app:cardElevation="10dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:onClick="CardProblems">
-
-                <TextView
+                    android:layout_height="wrap_content"
+                    android:text="Awareness"
+                    android:textStyle="bold"
+                    android:textColor="#1A1916"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="15dp">
+                </TextView>
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Problems"
-                    tools:layout_editor_absoluteX="2dp"
-                    tools:layout_editor_absoluteY="-42dp" />
+                    android:src="@drawable/awareness_homeimage">
+                </ImageView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/skill_Card"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:onClick="CardSkill"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/SoS"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.783"
+            app:layout_constraintStart_toEndOf="@+id/aware_Card"
+            app:layout_constraintTop_toBottomOf="@+id/include2"
+            app:layout_constraintVertical_bias="0.783">
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Skills"
+                    android:textStyle="bold"
+                    android:textColor="#1A1916"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="15dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/skilldevelopment">
+                </ImageView>
+            </LinearLayout>
 
-    </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/financial_Card"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center_vertical"
+            android:onClick="CardFinancial"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.063"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SoS"
+            app:layout_constraintVertical_bias="0.18">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Financial"
+                    android:textStyle="bold"
+                    android:textColor="#1A1916"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="15dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/financial">
+                </ImageView>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/problems_Card"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:onClick="CardProblems"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.786"
+            app:layout_constraintStart_toEndOf="@+id/financial_Card"
+            app:layout_constraintTop_toBottomOf="@+id/SoS"
+            app:layout_constraintVertical_bias="0.18">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Forums"
+                    android:textStyle="bold"
+                    android:textColor="#1A1916"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="15dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/forums">
+                </ImageView>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <include-->
+<!--            layout="@layout/main_toolbar"/>-->
+
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingTop="50dp"-->
+<!--            android:layout_gravity="center_horizontal">-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_height="160dp"-->
+<!--                android:id="@+id/aware_Card"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                app:cardCornerRadius="4dp"-->
+<!--                android:padding="10dp"-->
+<!--                app:cardElevation="10dp"-->
+<!--                android:onClick="CardAwareness">-->
+<!--                &lt;!&ndash;android:layout_marginStart="13dp"-->
+<!--                android:layout_marginLeft="13dp">&ndash;&gt;-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="Awareness"-->
+<!--                    tools:layout_editor_absoluteX="2dp"-->
+<!--                    tools:layout_editor_absoluteY="-42dp" />-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_height="160dp"-->
+<!--                android:id="@+id/skill_Card"-->
+<!--                android:layout_gravity="right"-->
+<!--                app:cardCornerRadius="4dp"-->
+<!--                android:padding="10dp"-->
+<!--                app:cardElevation="10dp"-->
+<!--                android:layout_marginStart="40dp"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:onClick="CardSkill">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="Skill Development"-->
+<!--                    tools:layout_editor_absoluteX="2dp"-->
+<!--                    tools:layout_editor_absoluteY="-42dp" />-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--        </LinearLayout>-->
+<!--        <Button-->
+<!--            android:id="@+id/SoS"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:background="@drawable/sosbutton"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:text="@string/sos"-->
+<!--            android:onClick="SoS"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+
+<!--            android:layout_gravity="center_horizontal">-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_height="160dp"-->
+<!--                android:id="@+id/financial_Card"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                app:cardCornerRadius="4dp"-->
+<!--                android:padding="10dp"-->
+<!--                app:cardElevation="10dp"-->
+<!--                android:onClick="CardFinancial">-->
+<!--                &lt;!&ndash;android:layout_marginStart="13dp"-->
+<!--                android:layout_marginLeft="13dp">&ndash;&gt;-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="Financial Empowerment"-->
+<!--                    tools:layout_editor_absoluteX="2dp"-->
+<!--                    tools:layout_editor_absoluteY="-42dp" />-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_height="160dp"-->
+<!--                android:id="@+id/problems_Card"-->
+<!--                android:layout_gravity="right"-->
+<!--                app:cardCornerRadius="4dp"-->
+<!--                android:padding="10dp"-->
+<!--                app:cardElevation="10dp"-->
+<!--                android:layout_marginStart="40dp"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:onClick="CardProblems">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="Problems"-->
+<!--                    tools:layout_editor_absoluteX="2dp"-->
+<!--                    tools:layout_editor_absoluteY="-42dp" />-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
 
     <RelativeLayout
         android:layout_width="300dp"

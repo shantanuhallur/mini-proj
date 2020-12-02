@@ -178,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="1) 26944754"
+                    android:text="2) 26944754"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
