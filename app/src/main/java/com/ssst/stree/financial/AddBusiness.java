@@ -1,4 +1,4 @@
-package com.ssst.stree;
+package com.ssst.stree.financial;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.ssst.stree.R;
 
 import java.util.HashMap;
 import java.util.Objects;

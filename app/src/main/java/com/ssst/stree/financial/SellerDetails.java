@@ -1,18 +1,18 @@
-package com.ssst.stree;
+package com.ssst.stree.financial;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.ssst.stree.classes.Seller;
+import com.ssst.stree.R;
+import com.ssst.stree.support.Seller;
 
 import java.util.Objects;
 

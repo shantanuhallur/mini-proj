@@ -1,4 +1,4 @@
-package com.ssst.stree.classes;
+package com.ssst.stree.support;
 
 
 public class Seller {

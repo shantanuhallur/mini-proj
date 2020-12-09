@@ -1,4 +1,4 @@
-package com.ssst.stree;
+package com.ssst.stree.awareness;
 
 import android.os.Bundle;
 
@@ -7,7 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
+import com.ssst.stree.R;
 
 /**
  * A simple {@link Fragment} subclass.

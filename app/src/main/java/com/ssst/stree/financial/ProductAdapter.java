@@ -1,4 +1,4 @@
-package com.ssst.stree;
+package com.ssst.stree.financial;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.ssst.stree.classes.Product;
+import com.ssst.stree.R;
+import com.ssst.stree.support.Product;
 
 public class ProductAdapter extends FirebaseRecyclerAdapter<Product, ProductAdapter.ProductViewHolder> {
 

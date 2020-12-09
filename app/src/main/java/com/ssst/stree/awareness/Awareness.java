@@ -1,14 +1,7 @@
-package com.ssst.stree;
+package com.ssst.stree.awareness;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBar.TabListener;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -23,9 +16,13 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.ssst.stree.security.MainActivity;
+import com.ssst.stree.problems.Problems;
+import com.ssst.stree.R;
+import com.ssst.stree.auth.SignIn;
+import com.ssst.stree.auth.SignUp;
+import com.ssst.stree.skilldev.SkillDevelopment;
+import com.ssst.stree.financial.Financial;
 
 public class Awareness extends AppCompatActivity {
 
@@ -338,12 +335,12 @@ public class Awareness extends AppCompatActivity {
 
     public void ClickSignIn(View view) {
         //redirect Activity
-        MainActivity.redirectActivity(this,SignIn.class);
+        MainActivity.redirectActivity(this, SignIn.class);
     }
 
     public void ClickSignUp(View view) {
         //redirect Activity
-        MainActivity.redirectActivity(this,SignUp.class);
+        MainActivity.redirectActivity(this, SignUp.class);
     }
 
     public void ClickSignOut(View view) {

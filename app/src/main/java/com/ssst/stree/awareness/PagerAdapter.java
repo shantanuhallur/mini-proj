@@ -1,6 +1,6 @@
 //For Awareness Tabbed View
 
-package com.ssst.stree;
+package com.ssst.stree.awareness;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

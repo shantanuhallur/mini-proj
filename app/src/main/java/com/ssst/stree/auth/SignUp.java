@@ -1,4 +1,4 @@
-package com.ssst.stree;
+package com.ssst.stree.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,59 +8,59 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.ssst.stree.R;
+import com.ssst.stree.support.LoadingBar;
 
-public class SignIn extends AppCompatActivity {
-    private EditText email;
-    private EditText password;
-    private FirebaseAuth mAuth;
+public class SignUp extends AppCompatActivity {
+    EditText email;
+    EditText password;
+    FirebaseAuth mAuth;
+    Button signUp;
     private LoadingBar loadingBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_sign_up);
 
         mAuth = FirebaseAuth.getInstance();
-        email = findViewById(R.id.etEmail);
-        password = findViewById(R.id.etPassword);
-        Button signIn = findViewById(R.id.btnLogin);
+        email = findViewById(R.id.ettEmail);
+        password = findViewById(R.id.ettPassword);
+        signUp = findViewById(R.id.btnRegister);
 
-        loadingBar = new LoadingBar(SignIn.this);
+        loadingBar = new LoadingBar(SignUp.this);
 
-        signIn.setOnClickListener(new View.OnClickListener() {
+        signUp.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();
+                signUp();
             }
-        });
+        }));
     }
 
-    public void signIn() {
+    public void signUp() {
         loadingBar.showDialog();
         String email = this.email.getText().toString().trim();
         String password = this.password.getText().toString().trim();
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d("SignIn","sign in : " + task.isSuccessful());
+                Log.d("SignUp","sign up : " + task.isSuccessful());
                 if(!task.isSuccessful()) {
-                    Log.d("SignIn","Something wrong");
+                    Log.d("SignUp","Something wrong");
                     loadingBar.hideDialog();
                     Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("SignIn","Awesome");
+                    Log.d("SignUp","Awesome");
                     loadingBar.hideDialog();
-                    Toast.makeText(getApplicationContext(),"Logged In Successfully!!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Your Email has Been Registered !",Toast.LENGTH_SHORT).show();
                     UpdateUI();
                 }
             }

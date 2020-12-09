@@ -12,18 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SellerDetails" />
-        <activity android:name=".ProductDetails" />
-        <activity android:name=".SellerView" />
-        <activity android:name=".AddBusiness" />
-        <activity android:name=".AddProduct" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".SignIn" />
-        <activity android:name=".Problems" />
-        <activity android:name=".Financial" />
-        <activity android:name=".SkillDevelopment" />
-        <activity android:name=".Awareness" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".financial.SellerDetails" />
+        <activity android:name=".financial.ProductDetails" />
+        <activity android:name=".financial.SellerView" />
+        <activity android:name=".financial.AddBusiness" />
+        <activity android:name=".financial.AddProduct" />
+        <activity android:name=".auth.SignUp" />
+        <activity android:name=".auth.SignIn" />
+        <activity android:name=".problems.Problems" />
+        <activity android:name=".financial.Financial" />
+        <activity android:name=".skilldev.SkillDevelopment" />
+        <activity android:name=".awareness.Awareness" />
+        <activity android:name=".security.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,8 +1,10 @@
-package com.ssst.stree;
+package com.ssst.stree.support;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
+
+import com.ssst.stree.R;
 
 public class LoadingBar {
     Activity activity;
@@ -12,7 +14,7 @@ public class LoadingBar {
         this.activity = activity;
     }
 
-    void showDialog() {
+    public void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         LayoutInflater inflater = activity.getLayoutInflater();
@@ -21,7 +23,7 @@ public class LoadingBar {
         dialog.show();
     }
 
-    void hideDialog() {
+    public void hideDialog() {
         dialog.dismiss();
     }
 }

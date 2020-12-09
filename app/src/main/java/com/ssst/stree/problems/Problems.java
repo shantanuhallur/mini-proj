@@ -1,4 +1,4 @@
-package com.ssst.stree;
+package com.ssst.stree.problems;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,6 +10,13 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ssst.stree.R;
+import com.ssst.stree.auth.SignIn;
+import com.ssst.stree.auth.SignUp;
+import com.ssst.stree.awareness.Awareness;
+import com.ssst.stree.financial.Financial;
+import com.ssst.stree.security.MainActivity;
+import com.ssst.stree.skilldev.SkillDevelopment;
 
 public class Problems extends AppCompatActivity {
 
@@ -65,12 +72,12 @@ public class Problems extends AppCompatActivity {
 
     public void ClickSignIn(View view) {
         //redirect Activity
-        MainActivity.redirectActivity(this,SignIn.class);
+        MainActivity.redirectActivity(this, SignIn.class);
     }
 
     public void ClickSignUp(View view) {
         //redirect Activity
-        MainActivity.redirectActivity(this,SignUp.class);
+        MainActivity.redirectActivity(this, SignUp.class);
     }
 
     public void ClickSignOut(View view) {

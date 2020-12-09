@@ -1,4 +1,4 @@
-package com.ssst.stree;
+package com.ssst.stree.awareness;
 
 import android.os.Bundle;
 
@@ -7,14 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.ssst.stree.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AwarenessFragment#newInstance} factory method to
+ * Use the {@link HelplinesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AwarenessFragment extends Fragment {
+public class HelplinesFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +26,7 @@ public class AwarenessFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AwarenessFragment() {
+    public HelplinesFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +36,11 @@ public class AwarenessFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AwarenessFragment.
+     * @return A new instance of fragment HelplinesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AwarenessFragment newInstance(String param1, String param2) {
-        AwarenessFragment fragment = new AwarenessFragment();
+    public static HelplinesFragment newInstance(String param1, String param2) {
+        HelplinesFragment fragment = new HelplinesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,19 +60,7 @@ public class AwarenessFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // IInitializing View
-        View view = inflater.inflate(R.layout.fragment_awareness, container, false);
-
-        // Initializing & Assigning Variable
-        TextView textView = view.findViewById(R.id.awareFragmentTab_textView);
-
-        //Get Title
-        String newTitle = getArguments().getString("title"); //Retrieving data from Awareness
-
-        //Set Title on Text View
-        textView.setText(newTitle);
-
-        // Return View
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_helplines, container, false);
     }
 }

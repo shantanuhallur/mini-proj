@@ -1,4 +1,4 @@
-package com.ssst.stree;
+package com.ssst.stree.security;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ssst.stree.support.LoadingBar;
+import com.ssst.stree.problems.Problems;
+import com.ssst.stree.R;
+import com.ssst.stree.auth.SignIn;
+import com.ssst.stree.auth.SignUp;
+import com.ssst.stree.skilldev.SkillDevelopment;
+import com.ssst.stree.awareness.Awareness;
+import com.ssst.stree.financial.Financial;
 
 public class MainActivity extends AppCompatActivity {
     float volume =  1;

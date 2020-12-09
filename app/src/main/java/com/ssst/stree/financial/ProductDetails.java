@@ -1,4 +1,4 @@
-package com.ssst.stree;
+package com.ssst.stree.financial;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.ssst.stree.classes.Product;
+import com.ssst.stree.R;
+import com.ssst.stree.support.Product;
 
 public class ProductDetails extends AppCompatActivity {
     public static Product product;
