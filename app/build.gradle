@@ -29,17 +29,21 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.google.android.material:material:1.2.1'
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.cardview:cardview:1.0.0"// for android 10 cardview
     implementation "androidx.viewpager2:viewpager2:1.0.0"// for tabbed view
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     implementation platform('com.google.firebase:firebase-bom:26.0.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'androidx.viewpager:viewpager:1.0.0' //for tabbed view
-    implementation 'com.google.android.material:material:1.2.1' //for tabbed view
-    implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-firestore:22.0.0'
+    implementation 'com.google.firebase:firebase-database:19.5.1'
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

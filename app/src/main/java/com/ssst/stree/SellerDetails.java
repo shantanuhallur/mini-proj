@@ -36,7 +36,7 @@ public class SellerDetails extends AppCompatActivity {
         IFSCSell = findViewById(R.id.IFSCSell);
         infoSell = findViewById(R.id.infoSell);
 
-        b_email = ProductDetails.email;
+        b_email = ProductDetails.product.getEmail();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("sellers").whereEqualTo("email",b_email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -67,7 +67,6 @@ public class SellerDetails extends AppCompatActivity {
                 accNoSell.setText(seller.getBusinessAcc());
                 IFSCSell.setText(seller.getBusinessIFSC());
                 infoSell.setText(seller.getBusinessInformation());
-
             }
         });
     }

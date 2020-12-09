@@ -1,74 +1,38 @@
 package com.ssst.stree;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.ssst.stree.classes.Product;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 public class SellerView extends AppCompatActivity {
-    private List<Product> productList;
     private RecyclerView recyclerView;
     private FirebaseUser currentUser;
     private DrawerLayout drawerLayout;
+    private ProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_view);
-        //animation.start
-        //initializing the productlist
-        productList = new ArrayList<>();
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("products").whereEqualTo("email",currentUser.getEmail()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-                    Product product = new Product(
-                            queryDocumentSnapshot.getId(),
-                            Objects.requireNonNull(queryDocumentSnapshot.get("name")).toString(),
-                            Objects.requireNonNull(queryDocumentSnapshot.get("price")).toString(),
-                            Objects.requireNonNull(queryDocumentSnapshot.get("category")).toString(),
-                            Objects.requireNonNull(queryDocumentSnapshot.get("info")).toString()
-                    );
-                    productList.add(product);
-                }
-
-                recyclerView = findViewById(R.id.recyclerSellerView);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-                SellerAdapter adapter;
-                //creating recyclerview adapter
-                adapter = new SellerAdapter(getApplicationContext(), productList);
-
-                //setting adapter to recyclerview
-                recyclerView.setAdapter(adapter);
-
-                //animation.stop()
-            }
-        });
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        recyclerView = findViewById(R.id.recyclerSellerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        populate();
     }
 
     public void ClickMenu(View view){
@@ -81,10 +45,60 @@ public class SellerView extends AppCompatActivity {
         MainActivity.closeDrawer(drawerLayout);
     }
 
+    public void ClickLanguage(View view){
+        //Recreate this activity with different Language
+        //recreate();
+    }
+
+    public void ClickOrders(View view){
+        //Redirect activity to Your Orders xml
+        //Financial.redirectActivity(this, SkillDevelopment.class);
+    }
+
+    public void ClickCart(View view){
+        //Redirect activity to Your Cart xml
+        //Financial.redirectActivity(this, SkillDevelopment.class);
+    }
+
+    public void ClickSell(View view){
+        //redirect Activity Seller
+        Financial.redirectActivity(this, AddBusiness.class);
+    }
+
+    public void ClickAllProducts(View view){
+        //redirect Activity Seller
+        Financial.redirectActivity(this, SellerView.class);
+    }
+
+    private void populate() {
+        Query query = FirebaseDatabase.getInstance()
+                .getReference().child("products").orderByChild("email").equalTo(currentUser.getEmail());
+
+        FirebaseRecyclerOptions<Product> options =
+                new FirebaseRecyclerOptions.Builder<Product>()
+                        .setQuery(query, Product.class)
+                        .build();
+
+        adapter = new ProductAdapter(options);
+        recyclerView.setAdapter(adapter);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         //Close Drawer
         MainActivity.closeDrawer(drawerLayout);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

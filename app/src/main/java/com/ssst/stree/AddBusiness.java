@@ -22,7 +22,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.ssst.stree.classes.Seller;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -39,7 +38,6 @@ public class AddBusiness extends AppCompatActivity {
     private EditText bank_branch;
     private EditText bank_acc_holder_name;
     private EditText bank_address;
-    private Seller seller;
     private FirebaseUser currentUser;
     private FirebaseFirestore db;
 
@@ -72,32 +70,16 @@ public class AddBusiness extends AppCompatActivity {
                     boolean flag = false;
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                            String businessName, businessContact, businessInformation, businessUpi, businessAcc, businessIFSC;
-                            String bankName, bankBranch, bankAccHolderName, bankAddress;
-
-                            businessName = Objects.requireNonNull(document.get("businessName")).toString();
-                            businessContact = Objects.requireNonNull(document.get("businessContact")).toString();
-                            businessInformation = Objects.requireNonNull(document.get("businessInformation")).toString();
-                            businessUpi = Objects.requireNonNull(document.get("businessUpi")).toString();
-                            businessAcc = Objects.requireNonNull(document.get("businessAcc")).toString();
-                            businessIFSC = Objects.requireNonNull(document.get("businessIFSC")).toString();
-                            bankName = Objects.requireNonNull(document.get("bankName")).toString();
-                            bankBranch = Objects.requireNonNull(document.get("bankBranch")).toString();
-                            bankAccHolderName = Objects.requireNonNull(document.get("bankAccHolderName")).toString();
-                            bankAddress = Objects.requireNonNull(document.get("bankAddress")).toString();
-
-                            seller = new Seller(currentUser.getEmail(), businessName, businessContact, businessInformation, businessUpi, businessAcc, businessIFSC, bankName, bankBranch, bankAccHolderName, bankAddress);
-
-                            business_name.setText(businessName);
-                            business_contact.setText(businessContact);
-                            business_information.setText(businessInformation);
-                            business_upi.setText(businessUpi);
-                            business_acc.setText(businessAcc);
-                            business_IFSC.setText(businessIFSC);
-                            bank_name.setText(bankName);
-                            bank_branch.setText(bankBranch);
-                            bank_acc_holder_name.setText(bankAccHolderName);
-                            bank_address.setText(bankAddress);
+                            business_name.setText(Objects.requireNonNull(document.get("businessName")).toString());
+                            business_contact.setText(Objects.requireNonNull(document.get("businessContact")).toString());
+                            business_information.setText(Objects.requireNonNull(document.get("businessInformation")).toString());
+                            business_upi.setText(Objects.requireNonNull(document.get("businessUpi")).toString());
+                            business_acc.setText(Objects.requireNonNull(document.get("businessAcc")).toString());
+                            business_IFSC.setText(Objects.requireNonNull(document.get("businessIFSC")).toString());
+                            bank_name.setText(Objects.requireNonNull(document.get("bankName")).toString());
+                            bank_branch.setText(Objects.requireNonNull(document.get("bankBranch")).toString());
+                            bank_acc_holder_name.setText(Objects.requireNonNull(document.get("bankAccHolderName")).toString());
+                            bank_address.setText(Objects.requireNonNull(document.get("bankAddress")).toString());
                             registeredContinue();
                             flag = true;
                             break;
@@ -126,33 +108,18 @@ public class AddBusiness extends AppCompatActivity {
     }
 
     private void unregisteredContinue() {
-        String businessName,businessContact,businessInformation,businessUpi,businessAcc,businessIFSC;
-        String bankName,bankBranch,bankAccHolderName,bankAddress;
-
-        businessName = this.business_name.getText().toString().trim();
-        businessContact = this.business_contact.getText().toString().trim();
-        businessInformation = this.business_information.getText().toString().trim();
-        businessUpi = this.business_upi.getText().toString().trim();
-        businessAcc = this.business_acc.getText().toString().trim();
-        businessIFSC = this.business_IFSC.getText().toString().trim();
-
-        bankName = this.bank_name.getText().toString().trim();
-        bankBranch = this.bank_branch.getText().toString().trim();
-        bankAccHolderName = this.bank_acc_holder_name.getText().toString().trim();
-        bankAddress = this.bank_address.getText().toString().trim();
-
         HashMap<String,String> seller = new HashMap<>();
         seller.put("email",currentUser.getEmail());
-        seller.put("businessName",businessName);
-        seller.put("businessContact",businessContact);
-        seller.put("businessUpi",businessUpi);
-        seller.put("businessAcc",businessAcc);
-        seller.put("businessIFSC",businessIFSC);
-        seller.put("bankName",bankName);
-        seller.put("bankBranch",bankBranch);
-        seller.put("bankAccHolderName",bankAccHolderName);
-        seller.put("bankAddress",bankAddress);
-        seller.put("businessInformation",businessInformation);
+        seller.put("businessName",this.business_name.getText().toString().trim());
+        seller.put("businessContact",this.business_contact.getText().toString().trim());
+        seller.put("businessInformation",this.business_information.getText().toString().trim());
+        seller.put("businessUpi",this.business_upi.getText().toString().trim());
+        seller.put("businessAcc",this.business_acc.getText().toString().trim());
+        seller.put("businessIFSC",this.business_IFSC.getText().toString().trim());
+        seller.put("bankName",this.bank_name.getText().toString().trim());
+        seller.put("bankBranch",this.bank_branch.getText().toString().trim());
+        seller.put("bankAccHolderName",this.bank_acc_holder_name.getText().toString().trim());
+        seller.put("bankAddress",this.bank_address.getText().toString().trim());
 
         db.collection("sellers").add(seller).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override

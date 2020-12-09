@@ -1,7 +1,5 @@
 package com.ssst.stree.classes;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Seller {
     private final String email;
@@ -15,7 +13,6 @@ public class Seller {
     private final String bankBranch;
     private final String bankAccHolderName;
     private final String bankAddress;
-    private List<Product> productList;
 
     public Seller(String email,String businessName, String businessContact, String businessInformation, String businessUpi, String businessAcc, String businessIFSC, String bankName, String bankBranch, String bankAccHolderName, String bankAddress) {
         this.email = email;
@@ -29,7 +26,6 @@ public class Seller {
         this.bankBranch = bankBranch;
         this.bankAccHolderName = bankAccHolderName;
         this.bankAddress = bankAddress;
-        productList = new ArrayList<>();
     }
 
     public String getBusinessName() {
