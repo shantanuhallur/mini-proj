@@ -1,7 +1,6 @@
 package com.ssst.stree.classes;
 
 public class Product {
-    private String id;
     private String name;
     private String price;
     private String category;
@@ -10,8 +9,7 @@ public class Product {
 
     public Product() {}
 
-    public Product(String id, String name, String price, String category, String info, String email) {
-        this.id = id;
+    public Product(String name, String price, String category, String info, String email) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -25,10 +23,6 @@ public class Product {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {
@@ -45,10 +39,6 @@ public class Product {
 
     public String getInfo() {
         return info;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setName(String name) {

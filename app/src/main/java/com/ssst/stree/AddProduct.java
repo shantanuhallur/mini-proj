@@ -67,28 +67,9 @@ public class AddProduct extends AppCompatActivity {
         productInformation = this.product_information.getText().toString().trim();
         productCategory = this.product_category.getText().toString().trim();
 
-//        HashMap<String,String> product = new HashMap<>();
-//        product.put("email",currentUser.getEmail());
-//        product.put("name",productName);
-//        product.put("price",productPrice);
-//        product.put("info",productInformation);
-//        product.put("category",productCategory);
-//
-//        db.collection("products").add(product).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//            @Override
-//            public void onSuccess(DocumentReference documentReference) {
-//                Log.d("addBusiness", "\u001B31;1mDocumentSnapshot added with ID: " + documentReference.getId());
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Log.w("addBusiness", "\u001B31;1mError adding document", e);
-//            }
-//        });
-
         String id = products.push().getKey();
         if(id != null) {
-            Product product = new Product(id,productName,productPrice,productCategory,productInformation,currentUser.getEmail());
+            Product product = new Product(productName,productPrice,productCategory,productInformation,currentUser.getEmail());
             products.child(id).setValue(product);
         }
 
