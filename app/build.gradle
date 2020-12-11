@@ -16,6 +16,21 @@ android {
         multiDexEnabled true
     }
 
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layouts/auth',
+                    'src/main/res/layouts/financial',
+                    'src/main/res/layouts/problems',
+                    'src/main/res/layouts/security',
+                    'src/main/res/layouts/skilldev',
+                    'src/main/res/layouts/support',
+                    'src/main/res/layouts/awareness',
+                    'src/main/res'
+            ]
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
