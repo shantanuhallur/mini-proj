@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".security.EmergencyNumbers" />
         <activity android:name=".financial.SellerDetails" />
         <activity android:name=".financial.ProductDetails" />
         <activity android:name=".financial.SellerView" />

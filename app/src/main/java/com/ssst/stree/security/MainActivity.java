@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setdb();
+        setDB();
         if(checkSelfPermission(Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED )
         {Toast.makeText(this,"Thank you for granting permissions for Lifesaving Security Module...!!!",Toast.LENGTH_LONG).show();}
         else {
@@ -61,29 +61,18 @@ public class MainActivity extends AppCompatActivity {
 
      @RequiresApi(api = Build.VERSION_CODES.M)
      public void SoS(View view) {
-
-        Contact contact = new Contact("Shantanu","9665308970");
-         Contact contact1 = new Contact("Shardul","7499184548");
-         Contact contact2 = new Contact("Tejas","8308857721");
-         Contact contact3 = new Contact("Sahil","9422429871");
-         db.contactDao().nukeTable();
-        db.contactDao().insertContact(contact);
-         db.contactDao().insertContact(contact1);
-         db.contactDao().insertContact(contact2);
-         db.contactDao().insertContact(contact3);
          List<Contact> ContactList=db.contactDao().getContacts();
          if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED) {
              for (Contact temp : ContactList) {
-//                 Log.d("CONTACTS", "**********************************************************************************************************************");
-//                 Log.d("CONTACTS", String.valueOf(temp));
-//                 Log.d("CONTACTS", "**********************************************************************************************************************");
+                 Log.d("CONTACTS", "**********************************************************************************************************************");
+                 Log.d("CONTACTS", String.valueOf(temp));
+                 Log.d("CONTACTS", "**********************************************************************************************************************");
                  String name = temp.getName();
                  String number = temp.getNumber();
                  String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
                          "HELP ME "+ name + "...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
                          "Latitude :- \n" +
                          "Longitude :-";
-
 
                  SmsManager mySms = SmsManager.getDefault();
                  mySms.sendTextMessage(number, null, message, null, null);
@@ -101,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
         player.start();
         player.setLooping(true);
         player.setVolume(volume,volume);
-
-
-
     }
 
     public void ClickMenu(View view) {
@@ -167,6 +153,11 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.redirectActivity(this, SignUp.class);
     }
 
+    public void ClickEmergency(View view) {
+        //redirect Activity
+        MainActivity.redirectActivity(this, EmergencyNumbers.class);
+    }
+
     public void ClickSignOut(View view) {
         FirebaseAuth.getInstance().signOut();
         Toast.makeText(getApplicationContext(), "Signed Out", Toast.LENGTH_SHORT).show();
@@ -220,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setdb(){
+    private void setDB(){
         db = Room.databaseBuilder(MainActivity.this,ContactDatabase.class,"Contacts").allowMainThreadQueries().build();
     }
 

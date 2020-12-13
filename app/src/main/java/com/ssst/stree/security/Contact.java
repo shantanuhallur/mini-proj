@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey;
 public class Contact {
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
-    public String name;
-    public String number;
+    private int id;
+    private String name;
+    private String number;
 
     public Contact(String name, String number) {
 
