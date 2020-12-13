@@ -4,6 +4,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.room.Room;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +30,8 @@ import com.ssst.stree.skilldev.SkillDevelopment;
 import com.ssst.stree.awareness.Awareness;
 import com.ssst.stree.financial.Financial;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     float volume =  1;
     MediaPlayer player;
@@ -35,12 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private TextView profile;
     private LoadingBar loadingBar;
+    private ContactDatabase db;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setdb();
         if(checkSelfPermission(Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED )
         {Toast.makeText(this,"Thank you for granting permissions for Lifesaving Security Module...!!!",Toast.LENGTH_LONG).show();}
         else {
@@ -55,7 +62,36 @@ public class MainActivity extends AppCompatActivity {
      @RequiresApi(api = Build.VERSION_CODES.M)
      public void SoS(View view) {
 
+        Contact contact = new Contact("Shantanu","9665308970");
+         Contact contact1 = new Contact("Shardul","7499184548");
+         Contact contact2 = new Contact("Tejas","8308857721");
+         Contact contact3 = new Contact("Sahil","9422429871");
+         db.contactDao().nukeTable();
+        db.contactDao().insertContact(contact);
+         db.contactDao().insertContact(contact1);
+         db.contactDao().insertContact(contact2);
+         db.contactDao().insertContact(contact3);
+         List<Contact> ContactList=db.contactDao().getContacts();
+         if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED) {
+             for (Contact temp : ContactList) {
+//                 Log.d("CONTACTS", "**********************************************************************************************************************");
+//                 Log.d("CONTACTS", String.valueOf(temp));
+//                 Log.d("CONTACTS", "**********************************************************************************************************************");
+                 String name = temp.getName();
+                 String number = temp.getNumber();
+                 String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
+                         "HELP ME "+ name + "...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
+                         "Latitude :- \n" +
+                         "Longitude :-";
 
+
+                 SmsManager mySms = SmsManager.getDefault();
+                 mySms.sendTextMessage(number, null, message, null, null);
+             }
+         }
+         else{
+             requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
+         }
 
 
         //buzzer sound
@@ -67,19 +103,7 @@ public class MainActivity extends AppCompatActivity {
         player.setVolume(volume,volume);
 
 
-        if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED) {
-            String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
-                    "HELP ME ...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
-                    "Latitude :- \n" +
-                    "Longitude :-";
-            String number = "+919665308970";
 
-            SmsManager mySms = SmsManager.getDefault();
-            mySms.sendTextMessage(number, null, message, null, null);
-        }
-        else{
-            requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
-        }
     }
 
     public void ClickMenu(View view) {
@@ -195,5 +219,11 @@ public class MainActivity extends AppCompatActivity {
             profile.setText("Your Profile");
         }
     }
+
+    private void setdb(){
+        db = Room.databaseBuilder(MainActivity.this,ContactDatabase.class,"Contacts").allowMainThreadQueries().build();
+    }
+
+
 }
 
