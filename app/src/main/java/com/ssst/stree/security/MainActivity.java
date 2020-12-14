@@ -1,11 +1,5 @@
 package com.ssst.stree.security;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,21 +16,28 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ssst.stree.support.LoadingBar;
-import com.ssst.stree.problems.Problems;
 import com.ssst.stree.R;
 import com.ssst.stree.auth.SignIn;
 import com.ssst.stree.auth.SignUp;
-import com.ssst.stree.skilldev.SkillDevelopment;
 import com.ssst.stree.awareness.Awareness;
 import com.ssst.stree.financial.Financial;
-
-import java.util.concurrent.Executor;
+import com.ssst.stree.problems.Problems;
+import com.ssst.stree.skilldev.SkillDevelopment;
+import com.ssst.stree.support.LoadingBar;
 
 public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private TextView profile;
     private LoadingBar loadingBar;
-    double lat, lon;
+    public static double lat = 0.0, lon = 0.0;
+    private int status = 0;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -60,24 +62,8 @@ public class MainActivity extends AppCompatActivity {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-           Log.d("in if","of permission");
+            Log.d("in if", "of permission");
         }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            location12 = location;
-                            Log.d("security", location.toString()+ "*******************************************************************************************************************");
-                            Log.d("security",   "*******************************************************************************************************************");
-
-                        }
-                    }
-                });
-
-
-
         if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
                 checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "Thank you for granting permissions for Lifesaving Security Module...!!!", Toast.LENGTH_LONG).show();
@@ -90,77 +76,77 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void SoS(View view) {
+    public void SoS(View view) throws InterruptedException {
+//        Intent intent = new Intent(getBaseContext(), sendMessage.class);
+//        startService(intent);
 
-
-
-
-        Log.d("security",  "*******************************************************************************************************************");
-        AsyncTaskRunner runner = new AsyncTaskRunner();
-        runner.execute();
-
-    }
-
-    private class AsyncTaskRunner extends  AsyncTask<String, String, String> {
-
-        private String resp;
-
-
-
-        @RequiresApi(api = Build.VERSION_CODES.M)
-        @Override
-        protected String doInBackground(String... params) {
-            //publishProgress("Sleeping..."); // Calls onProgressUpdate()
-            try {
-
-                //buzzer sound
-                if (player == null) {
-                    player = MediaPlayer.create(MainActivity.this, R.raw.buzzer);
-                }
-                player.start();
-                player.setLooping(true);
-                player.setVolume(volume, volume);
-
-
-                if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
-                        checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-
-                    Log.d("hi", "hi");
-
-                    String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
-                            "HELP ME ...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
-                            "Latitude :- \n" + location12.toString()+
-                            "Longitude :-\n"  ;
-
-                    String number = "+919665308970";
-                    SmsManager mySms = SmsManager.getDefault();
-                    mySms.sendTextMessage(number, null, message, null, null);
-
-                } else {
-                    requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
-                }
-
-
-        } catch(Exception e)
-
-        {
-            e.printStackTrace();
-            resp = e.getMessage();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
         }
-            return resp;
-    }
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            lat = location.getLatitude();
+                            lon = location.getLongitude();
+                            Log.d("security", lat + "*******************************************************************************************************************");
+                            Log.d("security", "*******************************************************************************************************************");
+                            status = 1;
+//                            Intent intent = new Intent(getBaseContext() ,sendMessage.class);
+//                            intent.putExtra("lat" , lat);
+//                            intent.putExtra("lon",lon);
+//                            startActivity(intent);
+                            try {
+                                if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
+                                        checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                                    Log.d("security", "Service Started :" + lat + "*******************************************************************************************************************");
+                                    Log.d("TAG", "SoS: ----------------------------------------------------------------------------");
+
+                                    String url = "https://maps.google.com/?q=" + lat + ","+lon;
+
+//                    String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
+//                            "HELP ME ...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
+//                            "Latitude :- \n" +
+//                            "Longitude :-\n";
+
+                                    String message = "Help!!" + "\n" + url;
+                                    String number = "+917499184548";
+                                    SmsManager mySms = SmsManager.getDefault();
+                                    mySms.sendTextMessage(number, null, message, null, null);
+                                    //st=1;
+
+                                } else {
+                                    requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                                }
+
+                                //buzzer sound
+                                if (player == null) {
+                                    player = MediaPlayer.create(MainActivity.this, R.raw.buzzer);
+                                }
+                                player.start();
+                                player.setLooping(true);
+                                player.setVolume(volume, volume);
 
 
-//        @Override
-//        protected void onPostExecute(String result) {
-//            // execution of result of Long time consuming operation
-//            progressDialog.dismiss();
-//            finalResult.setText(result);
-//        }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                String resp = e.getMessage(); }
+                        }
+                    }
+                });
 
-}
-
+        }
 
     public void ClickMenu(View view) {
         //Open Drawer
