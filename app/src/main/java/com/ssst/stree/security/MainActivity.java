@@ -2,14 +2,19 @@ package com.ssst.stree.security;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -51,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private LoadingBar loadingBar;
     public static double lat = 0.0, lon = 0.0;
     private int status = 0;
+    boolean loc;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -59,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Checking for location
+        //checkLocationPermission();
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -77,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void SoS(View view) throws InterruptedException {
-//        Intent intent = new Intent(getBaseContext(), sendMessage.class);
-//        startService(intent);
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -88,65 +96,67 @@ public class MainActivity extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Log.d("TAG,","SoS: ----------------------------------------------------------------------------------");
+
             return;
         }
+        //loc = isLocationEnabled(this);
+        loc= true;
+        if(loc==true) {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            Log.d("TAG", "SoS: ----------------------------------------------------------HIIIII" + location);
 
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            lat = location.getLatitude();
-                            lon = location.getLongitude();
-                            Log.d("security", lat + "*******************************************************************************************************************");
-                            Log.d("security", "*******************************************************************************************************************");
-                            status = 1;
-//                            Intent intent = new Intent(getBaseContext() ,sendMessage.class);
-//                            intent.putExtra("lat" , lat);
-//                            intent.putExtra("lon",lon);
-//                            startActivity(intent);
-                            try {
-                                if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
-                                        checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                            if (location != null) {
+                                lat = location.getLatitude();
+                                lon = location.getLongitude();
+                                Log.d("security", lat + "*******************************************************************************************************************");
 
-                                    Log.d("security", "Service Started :" + lat + "*******************************************************************************************************************");
-                                    Log.d("TAG", "SoS: ----------------------------------------------------------------------------");
+                                try {
+                                    if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
+                                            checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                                    String url = "https://maps.google.com/?q=" + lat + ","+lon;
+                                        Log.d("security", "Service Started :" + lat + "*******************************************************************************************************************");
+                                        Log.d("TAG", "SoS: ----------------------------------------------------------------------------");
+
+                                        String url = "https://maps.google.com/?q=" + lat + "," + lon;
 
 //                    String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
 //                            "HELP ME ...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
 //                            "Latitude :- \n" +
 //                            "Longitude :-\n";
 
-                                    String message = "Help!!" + "\n" + url;
-                                    String number = "+917499184548";
-                                    SmsManager mySms = SmsManager.getDefault();
-                                    mySms.sendTextMessage(number, null, message, null, null);
-                                    //st=1;
+                                        String message = "Help!!" + "\n" + url;
+                                        String number = "+919422429871";
+                                        SmsManager mySms = SmsManager.getDefault();
+                                        mySms.sendTextMessage(number, null, message, null, null);
+                                        //st=1;
 
-                                } else {
-                                    requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                                    } else {
+                                        requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                                    }
+
+                                    //buzzer sound
+                                    if (player == null) {
+                                        player = MediaPlayer.create(MainActivity.this, R.raw.buzzer);
+                                    }
+                                    player.start();
+                                    player.setLooping(true);
+                                    player.setVolume(volume, volume);
+
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    String resp = e.getMessage();
                                 }
-
-                                //buzzer sound
-                                if (player == null) {
-                                    player = MediaPlayer.create(MainActivity.this, R.raw.buzzer);
-                                }
-                                player.start();
-                                player.setLooping(true);
-                                player.setVolume(volume, volume);
-
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                String resp = e.getMessage(); }
+                            }
                         }
-                    }
-                });
-
-        }
+                    });
+            }
+    }
 
     public void ClickMenu(View view) {
         //Open Drawer
@@ -261,74 +271,76 @@ public class MainActivity extends AppCompatActivity {
             profile.setText("Your Profile");
         }
     }
+
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    private void checkLocationPermission() {
+        loc = isLocationEnabled(this);
+        Log.d("main", "checkLocationPermission: ---------------------------------------------------" + loc);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(this)
+                        .setTitle("Location Permission Needed")
+                        .setMessage("This app needs the Location permission, please accept to use location functionality")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(MainActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION );
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION );
+            }
+
+        }
+
+
+        if(!loc){
+            new AlertDialog.Builder(this)
+                    .setTitle("Please Enable Location")
+                    .setMessage("To continue, turn on device Location")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent1 = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(intent1);
+                        }
+                    })
+                    .create()
+                    .show();
+        }
+    }
+
+    public static Boolean isLocationEnabled(Context context)
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            // This is new method provided in API 28
+            LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            return lm.isLocationEnabled();
+        } else {
+            // This is Deprecated in API 28
+            int mode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE,
+                    Settings.Secure.LOCATION_MODE_OFF);
+            return  (mode != Settings.Secure.LOCATION_MODE_OFF);
+
+        }
+    }
+
 }
-
-
-//    @RequiresApi(api = Build.VERSION_CODES.M)
-//    public void SoS(View view) {
-//
-
-
-//
-//
-//
-//        //buzzer sound
-//        if(player==null){
-//            player = MediaPlayer.create(this,R.raw.buzzer);
-//        }
-//        player.start();
-//        player.setLooping(true);
-//        player.setVolume(volume,volume);
-//
-//
-//        if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED&&
-//                checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED) {
-
-//fusedLocationClient.getLastLocation()
-//        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-//@Override
-//public void onSuccess(Location location) {
-//        // Got last known location. In some rare situations this can be null.
-//        if (location != null) {
-//        lat = location.getLatitude();
-//        lon = location.getLongitude();
-//
-//
-////                                SmsManager smsManager = SmsManager.getDefault();
-////                                StringBuffer smsBody = new StringBuffer();
-////                                smsBody.append(message);
-////                                smsBody.append("http://maps.google.com?q=");
-////                                smsBody.append(location.getLatitude());
-////                                smsBody.append(",");
-////                                smsBody.append(location.getLongitude());
-////                                smsManager.sendTextMessage(phoneNumber, null, smsBody.toString(), null, null);
-////                             double mylat= location.getLatitude();
-////                                double mylon = location.getLongitude();
-//        Log.d("security", String.valueOf(lat) + "*******************************************************************************************************************");
-//        Log.d("security", String.valueOf(lon) + "*******************************************************************************************************************");
-//
-//
-//        }
-//        }
-//        });
-//
-//            Log.d("hi","hi");
-//
-//            String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
-//                    "HELP ME ...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
-//                    "Latitude :- \n" +lat+
-//                    "Longitude :-\n"+lon;
-//
-//            String number = "+919665308970";
-//            SmsManager mySms = SmsManager.getDefault();
-//            mySms.sendTextMessage(number, null, message, null, null);
-//
-//        }
-//
-//
-//
-//
-//        else{
-//            requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
-//        }
-//        }
