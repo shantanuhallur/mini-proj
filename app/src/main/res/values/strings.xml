@@ -21,4 +21,8 @@
     <string name="contact_seller">CONTACT  SELLER</string>
     <string name="loading">Loading</string>
     <string name="product_image">Product image</string>
+    <string name="upload">Upload</string>
+    <string name="temp">temp</string>
+    <string name="emergency">Emergency</string>
+    <string name="profile">profile</string>
 </resources>

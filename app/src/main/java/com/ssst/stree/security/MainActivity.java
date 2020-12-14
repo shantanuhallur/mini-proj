@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setDB();
+
+        EmergencyNumbers.contactList = db.contactDao().getContacts();
         if(checkSelfPermission(Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED )
         {Toast.makeText(this,"Thank you for granting permissions for Lifesaving Security Module...!!!",Toast.LENGTH_LONG).show();}
         else {
@@ -61,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
      @RequiresApi(api = Build.VERSION_CODES.M)
      public void SoS(View view) {
-         List<Contact> ContactList=db.contactDao().getContacts();
          if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED) {
-             for (Contact temp : ContactList) {
+             for (Contact temp : EmergencyNumbers.contactList) {
                  Log.d("CONTACTS", "**********************************************************************************************************************");
                  Log.d("CONTACTS", String.valueOf(temp));
                  Log.d("CONTACTS", "**********************************************************************************************************************");
