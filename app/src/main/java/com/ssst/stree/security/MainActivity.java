@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Checking for location
-        //checkLocationPermission();
+        checkLocationPermission();
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
