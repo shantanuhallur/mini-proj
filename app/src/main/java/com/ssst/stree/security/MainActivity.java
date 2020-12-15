@@ -12,11 +12,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.media.MediaPlayer;
-import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +24,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.ssst.stree.support.LoadingBar;
+
 import com.ssst.stree.problems.Problems;
 import com.ssst.stree.R;
 import com.ssst.stree.auth.SignIn;
@@ -38,7 +36,6 @@ import com.ssst.stree.financial.Financial;
 public class MainActivity extends AppCompatActivity {
     float volume = 1;
     MediaPlayer player;
-    MediaRecorder recorder;
     //Variables are initialized
     private DrawerLayout drawerLayout;
     private TextView profile;
@@ -118,11 +115,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
-    public void ClickProfile() {
-        //Closes Drawer
-        closeDrawer(drawerLayout);
-    }
-
     public static void closeDrawer(DrawerLayout drawerLayout) {
         //close drawer layout
         //check condition
@@ -180,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         displayName();
     }
 
-    public static void redirectActivity(Activity activity, Class aClass) {
+    public static void redirectActivity(Activity activity, Class<?> aClass) {
         //Initialize Intent
         Intent intent = new Intent(activity, aClass);
         //set flag
@@ -223,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
             profile.setText(user.getEmail());
         } else {
-            profile.setText("Your Profile");
+            profile.setText(R.string.your_profile);
         }
     }
 

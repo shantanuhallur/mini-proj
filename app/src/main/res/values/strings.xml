@@ -25,4 +25,5 @@
     <string name="temp">temp</string>
     <string name="emergency">Emergency</string>
     <string name="profile">profile</string>
+    <string name="your_profile">Your Profile</string>
 </resources>
