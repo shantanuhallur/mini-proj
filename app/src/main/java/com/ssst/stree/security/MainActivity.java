@@ -10,15 +10,20 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.util.Log;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ssst.stree.support.LoadingBar;
@@ -30,17 +35,17 @@ import com.ssst.stree.skilldev.SkillDevelopment;
 import com.ssst.stree.awareness.Awareness;
 import com.ssst.stree.financial.Financial;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-    float volume =  1;
+    float volume = 1;
     MediaPlayer player;
     MediaRecorder recorder;
     //Variables are initialized
     private DrawerLayout drawerLayout;
     private TextView profile;
-    private LoadingBar loadingBar;
     private ContactDatabase db;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private double latitude;
+    private double longitude;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -49,50 +54,58 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setDB();
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         EmergencyNumbers.contactList = db.contactDao().getContacts();
-        if(checkSelfPermission(Manifest.permission.SEND_SMS)== PackageManager.PERMISSION_GRANTED &&
-                checkSelfPermission(Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED )
-        {Toast.makeText(this,"Thank you for granting permissions for Lifesaving Security Module...!!!",Toast.LENGTH_LONG).show();}
-        else {
-            requestPermissions(new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS}, 1);
-
+        if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Thank you for granting permissions for Lifesaving Security Module...!!!", Toast.LENGTH_LONG).show();
+        } else {
+            requestPermissions(new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         profile = findViewById(R.id.profile);
     }
 
 
-     @RequiresApi(api = Build.VERSION_CODES.M)
-     public void SoS(View view) {
-         if(checkSelfPermission(Manifest.permission.SEND_SMS)==PackageManager.PERMISSION_GRANTED &&
-                 checkSelfPermission(Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED) {
-             for (Contact temp : EmergencyNumbers.contactList) {
-                 Log.d("CONTACTS", "**********************************************************************************************************************");
-                 Log.d("CONTACTS", String.valueOf(temp));
-                 Log.d("CONTACTS", "**********************************************************************************************************************");
-                 String name = temp.getName();
-                 String number = temp.getNumber();
-                 String message = "!!!@@@~~~EMERGENCY~~~@@@!!!\n" +
-                         "HELP ME "+ name + "...!!! I AM IN DANGER AND PLEASE COME AS SOON AS YOU CAN !!! MY LOCATION IS :- \n" +
-                         "Latitude :- \n" +
-                         "Longitude :-";
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void SoS(View view) {
+        if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                 SmsManager mySms = SmsManager.getDefault();
-                 mySms.sendTextMessage(number, null, message, null, null);
-             }
-         }
-         else{
-             requestPermissions(new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS},1);
-         }
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if(location != null) {
+                        latitude = location.getLatitude();
+                        longitude = location.getLongitude();
 
+                        String url = "https://maps.google.com/?q=" + latitude + "," + longitude;
+
+                        for (Contact temp : EmergencyNumbers.contactList) {
+                            String name = temp.getName();
+                            String number = temp.getNumber();
+                            String message = "!!!EMERGENCY!!!\n" +
+                                    "HELP ME " + name + "!!!\nI AM IN DANGER!!!\nMY LOCATION IS : " + url;
+
+                            SmsManager mySms = SmsManager.getDefault();
+                            mySms.sendTextMessage(number, null, message, null, null);
+                        }
+                    }
+                }
+            });
+        } else {
+            requestPermissions(new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
 
         //buzzer sound
-        if(player==null){
-            player = MediaPlayer.create(this,R.raw.buzzer);
+        if (player == null) {
+            player = MediaPlayer.create(this, R.raw.buzzer);
         }
         player.start();
         player.setLooping(true);
-        player.setVolume(volume,volume);
+        player.setVolume(volume, volume);
     }
 
     public void ClickMenu(View view) {
@@ -200,12 +213,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume () {
+    protected void onResume() {
         super.onResume();
         displayName();
     }
 
-    private void displayName(){
+    private void displayName() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             profile.setText(user.getEmail());
@@ -214,10 +227,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setDB(){
-        db = Room.databaseBuilder(MainActivity.this,ContactDatabase.class,"Contacts").allowMainThreadQueries().build();
+    private void setDB() {
+        db = Room.databaseBuilder(MainActivity.this, ContactDatabase.class, "Contacts").allowMainThreadQueries().build();
     }
-
 
 }
 
