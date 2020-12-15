@@ -1,6 +1,5 @@
 package com.ssst.stree.support;
 
-
 public class Seller {
     private final String email;
     private final String businessName;

@@ -26,4 +26,7 @@
     <string name="emergency">Emergency</string>
     <string name="profile">profile</string>
     <string name="your_profile">Your Profile</string>
+    <string name="name">Name</string>
+    <string name="number">1111111111</string>
+    <string name="delete">Delete</string>
 </resources>

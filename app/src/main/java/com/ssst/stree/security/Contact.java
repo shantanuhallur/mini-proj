@@ -3,8 +3,10 @@ package com.ssst.stree.security;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Contact {
+public class Contact implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -39,15 +41,6 @@ public class Contact {
 
     public void setNumber(String number) {
         this.number = number;
-    }
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", number='" + number + '\'' +
-                '}';
     }
 }
 

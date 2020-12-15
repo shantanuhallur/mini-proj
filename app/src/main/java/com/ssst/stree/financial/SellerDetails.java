@@ -19,7 +19,6 @@ import java.util.Objects;
 public class SellerDetails extends AppCompatActivity {
     private TextView sellName,sellCon,sellUPI,bankSellBranch,bankSellHolderName,accNoSell,IFSCSell,infoSell,bankSellName;
     private Seller seller;
-    private String b_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +35,10 @@ public class SellerDetails extends AppCompatActivity {
         IFSCSell = findViewById(R.id.IFSCSell);
         infoSell = findViewById(R.id.infoSell);
 
-        b_email = ProductDetails.product.getEmail();
+        String b_email = ProductDetails.product.getEmail();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("sellers").whereEqualTo("email",b_email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("sellers").whereEqualTo("email", b_email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

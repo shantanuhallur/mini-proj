@@ -89,7 +89,7 @@ public class Financial extends AppCompatActivity {
         Financial.redirectActivity(this, SellerView.class);
     }
 
-    public static void redirectActivity(Activity activity,Class aClass) {
+    public static void redirectActivity(Activity activity,Class<?> aClass) {
         Intent intent = new Intent(activity, aClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
@@ -100,7 +100,7 @@ public class Financial extends AppCompatActivity {
         if(user != null) {
             profile.setText(user.getEmail());
         }else {
-            profile.setText("Your Profile");
+            profile.setText(R.string.your_profile);
         }
     }
 
