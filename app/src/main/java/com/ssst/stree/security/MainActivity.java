@@ -12,8 +12,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.TextView;
@@ -33,6 +35,8 @@ import com.ssst.stree.skilldev.SkillDevelopment;
 import com.ssst.stree.awareness.Awareness;
 import com.ssst.stree.financial.Financial;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
     float volume = 1;
     MediaPlayer player;
@@ -43,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private double latitude;
     private double longitude;
+    String AudioSavePathInDevice = null;
+    MediaRecorder mediaRecorder ;
+    boolean startRecording = true;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -55,10 +62,18 @@ public class MainActivity extends AppCompatActivity {
         EmergencyNumbers.contactList = db.contactDao().getContacts();
         if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
                 checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED &&
-                checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+        ) {
             Toast.makeText(this, "Thank you for granting permissions for Lifesaving Security Module...!!!", Toast.LENGTH_LONG).show();
         } else {
-            requestPermissions(new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            requestPermissions(new String[]{Manifest.permission.SEND_SMS,
+                    Manifest.permission.READ_CONTACTS,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.RECORD_AUDIO,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, 1);
         }
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         profile = findViewById(R.id.profile);
@@ -69,8 +84,41 @@ public class MainActivity extends AppCompatActivity {
     public void SoS(View view) {
         if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
                 checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED &&
-                checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+        ) {
 
+            if(startRecording) {
+                AudioSavePathInDevice =
+                        Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +
+                                System.currentTimeMillis() + "AudioRecording.3gp";
+
+                MediaRecorderReady();
+
+                try {
+                    mediaRecorder.prepare();
+                    mediaRecorder.start();
+                } catch (IllegalStateException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+
+                Toast.makeText(MainActivity.this, "Recording started",
+                        Toast.LENGTH_LONG).show();
+                startRecording = false;
+            }
+            else{
+
+                mediaRecorder.stop();
+                Toast.makeText(MainActivity.this, "Recording Completed",
+                        Toast.LENGTH_LONG).show();
+                startRecording = true;
+            }
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
@@ -93,7 +141,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         } else {
-            requestPermissions(new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            requestPermissions(new String[]{Manifest.permission.SEND_SMS,
+                    Manifest.permission.READ_CONTACTS,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.RECORD_AUDIO,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, 1);
         }
 
         //buzzer sound
@@ -103,6 +156,14 @@ public class MainActivity extends AppCompatActivity {
         player.start();
         player.setLooping(true);
         player.setVolume(volume, volume);
+    }
+
+    private void MediaRecorderReady(){
+        mediaRecorder=new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        mediaRecorder.setOutputFile(AudioSavePathInDevice);
     }
 
     public void ClickMenu(View view) {
