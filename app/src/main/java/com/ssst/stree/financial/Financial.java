@@ -40,6 +40,10 @@ public class Financial extends AppCompatActivity {
             startActivity(intent);
         }
 
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            this.finish();
+        }
+
         //Assign Variable
         drawerLayout = findViewById(R.id.drawer_layout);
         profile = findViewById(R.id.profile);
