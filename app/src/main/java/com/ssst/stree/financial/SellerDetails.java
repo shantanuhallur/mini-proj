@@ -12,7 +12,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ssst.stree.R;
-import com.ssst.stree.support.Seller;
 
 import java.util.Objects;
 
@@ -35,7 +34,7 @@ public class SellerDetails extends AppCompatActivity {
         IFSCSell = findViewById(R.id.IFSCSell);
         infoSell = findViewById(R.id.infoSell);
 
-        String b_email = ProductDetails.product.getEmail();
+        String b_email = getIntent().getStringExtra("email");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("sellers").whereEqualTo("email", b_email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

@@ -1,4 +1,4 @@
-package com.ssst.stree.support;
+package com.ssst.stree.financial;
 
 public class Seller {
     private final String email;

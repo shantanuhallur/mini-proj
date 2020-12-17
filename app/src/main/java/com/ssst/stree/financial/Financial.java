@@ -19,7 +19,6 @@ import com.google.firebase.database.Query;
 import com.ssst.stree.security.MainActivity;
 import com.ssst.stree.R;
 import com.ssst.stree.auth.SignIn;
-import com.ssst.stree.support.Product;
 
 public class Financial extends AppCompatActivity {
     public static String id;

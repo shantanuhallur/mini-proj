@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.ssst.stree.security.MainActivity;
 import com.ssst.stree.R;
-import com.ssst.stree.support.Product;
 
 public class SellerView extends AppCompatActivity {
     private RecyclerView recyclerView;

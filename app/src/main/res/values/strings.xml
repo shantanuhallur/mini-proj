@@ -29,4 +29,10 @@
     <string name="name">Name</string>
     <string name="number">1111111111</string>
     <string name="delete">Delete</string>
+    <string name="product_name">Product Name</string>
+    <string name="price">Price</string>
+    <string name="category">Category</string>
+    <string name="information">Information</string>
+    <string name="add_product">Add Product</string>
+    <string name="save">Save</string>
 </resources>

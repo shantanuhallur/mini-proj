@@ -1,20 +1,26 @@
-package com.ssst.stree.support;
+package com.ssst.stree.financial;
 
-public class Product {
+import android.net.Uri;
+
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String name;
     private String price;
     private String category;
     private String info;
+    private String imageUri;
     private String email;
 
     public Product() {}
 
-    public Product(String name, String price, String category, String info, String email) {
+    public Product(String name, String price, String category, String info, String email, Uri uri) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.info = info;
         this.email = email;
+        this.imageUri = uri.toString();
     }
 
     public String getEmail() {
@@ -55,6 +61,14 @@ public class Product {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 
     @Override

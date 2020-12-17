@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.squareup.picasso.Picasso;
 import com.ssst.stree.R;
-import com.ssst.stree.support.Product;
 
 public class ProductAdapter extends FirebaseRecyclerAdapter<Product, ProductAdapter.ProductViewHolder> {
 
@@ -35,6 +35,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product, ProductAdap
         holder.textViewRating.setText(product.getCategory());
         holder.textViewPrice.setText(product.getPrice());
         holder.product = product;
+        Picasso.get().load(product.getImageUri()).fit().centerCrop().into(holder.imageView);
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
@@ -92,9 +93,9 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product, ProductAdap
         }
 
         private void showProductDetails() {
-            ProductDetails.product = product;
             Intent intent = new Intent(itemView.getContext(), ProductDetails.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("product",product);
             itemView.getContext().startActivity(intent);
         }
     }
