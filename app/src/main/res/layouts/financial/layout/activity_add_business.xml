@@ -9,36 +9,41 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <include
+                android:id="@+id/include2"
+                layout="@layout/main_toolbar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <Button
                 android:id="@+id/continueButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:ems="10"
                 android:text="Continue"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/businessInformation"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/bankAddress" />
 
             <EditText
                 android:id="@+id/bankAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginLeft="50dp"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="   Bank Address   "
                 android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bankAccHolderName" />
 
@@ -46,82 +51,86 @@
                 android:id="@+id/bankAccHolderName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginLeft="50dp"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="   Bank Acc Holder Name   "
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bankName" />
+                app:layout_constraintTop_toBottomOf="@+id/businessAcc" />
 
             <EditText
                 android:id="@+id/businessAcc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="   Acc Number   "
                 android:inputType="number"
                 app:layout_constraintEnd_toStartOf="@+id/businessIFSC"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/businessContact" />
+                app:layout_constraintTop_toBottomOf="@+id/bankName" />
 
             <EditText
                 android:id="@+id/bankName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="   Bank Name   "
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/bankBranch"
-                app:layout_constraintHorizontal_bias="0.19"
+                app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/businessAcc" />
+                app:layout_constraintTop_toBottomOf="@+id/addBussinessInfoLabel" />
 
             <EditText
                 android:id="@+id/bankBranch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="   Bank Branch Name   "
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/bankName"
-                app:layout_constraintTop_toBottomOf="@+id/businessIFSC" />
+                app:layout_constraintTop_toBottomOf="@+id/addBussinessInfoLabel" />
 
             <EditText
                 android:id="@+id/businessIFSC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="   IFSC Code   "
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/businessAcc"
-                app:layout_constraintTop_toBottomOf="@+id/businessUPI" />
+                app:layout_constraintTop_toBottomOf="@+id/bankBranch" />
 
             <EditText
                 android:id="@+id/businessName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="  Business Name  "
@@ -131,43 +140,45 @@
 
             <ImageView
                 android:id="@+id/businessLogo"
-                android:layout_width="71dp"
-                android:layout_height="80dp"
+                android:layout_width="112dp"
+                android:layout_height="108dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_profile" />
+                app:layout_constraintTop_toBottomOf="@+id/AddBussinessInfoLabel"
+                app:srcCompat="@drawable/add_image_icon" />
 
             <EditText
                 android:id="@+id/businessContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="   Contact Number   "
                 android:inputType="phone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/businessUPI"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/businessName"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/businessName" />
 
             <EditText
                 android:id="@+id/businessUPI"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="32dp"
-                android:background="#F1F0F0"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="   UPI Number  "
                 android:inputType="phone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/businessContact"
                 app:layout_constraintTop_toBottomOf="@+id/businessName" />
 
@@ -175,19 +186,52 @@
                 android:id="@+id/businessInformation"
                 android:layout_width="wrap_content"
                 android:layout_height="64dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginLeft="64dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="64dp"
-                android:layout_marginRight="64dp"
-                android:background="#F1F0F0"
                 android:ellipsize="start"
                 android:gravity="center"
                 android:hint="    Information   "
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bankAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/businessContact" />
+
+            <TextView
+                android:id="@+id/AddBussinessInfoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Add Company Information : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+            <TextView
+                android:id="@+id/addBussinessInfoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Add Banking Details : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="32dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/businessInformation" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

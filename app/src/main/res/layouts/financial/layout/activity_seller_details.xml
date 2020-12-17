@@ -35,7 +35,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/sellLogo" />
 
             <TextView
                 android:id="@+id/bankLabel"
@@ -143,7 +143,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/sellUPI"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/sellLogo" />
 
             <TextView
                 android:id="@+id/conLabel"
@@ -159,10 +159,10 @@
                 app:layout_constraintEnd_toStartOf="@+id/sellCon"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/sellLogo" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/sellLogo"
                 android:layout_width="124dp"
                 android:layout_height="97dp"
                 android:layout_marginTop="16dp"
@@ -183,7 +183,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/nameLabel"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/sellLogo" />
 
             <TextView
                 android:id="@+id/bankSellName"
@@ -267,7 +267,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/upiLabel"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/sellLogo" />
 
             <TextView
                 android:id="@+id/sellCon"
@@ -281,7 +281,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/conLabel"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/sellLogo" />
 
             <View
                 android:id="@+id/divider"

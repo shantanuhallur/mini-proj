@@ -3,14 +3,17 @@ package com.ssst.stree.financial;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 import com.ssst.stree.R;
 
 import java.util.Objects;
@@ -18,6 +21,7 @@ import java.util.Objects;
 public class SellerDetails extends AppCompatActivity {
     private TextView sellName,sellCon,sellUPI,bankSellBranch,bankSellHolderName,accNoSell,IFSCSell,infoSell,bankSellName;
     private Seller seller;
+    private ImageView sellLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class SellerDetails extends AppCompatActivity {
         accNoSell = findViewById(R.id.accNoSell);
         IFSCSell = findViewById(R.id.IFSCSell);
         infoSell = findViewById(R.id.infoSell);
+        sellLogo = findViewById(R.id.sellLogo);
 
         String b_email = getIntent().getStringExtra("email");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -53,7 +58,8 @@ public class SellerDetails extends AppCompatActivity {
                             Objects.requireNonNull(queryDocumentSnapshot.get("bankBranch")).toString(),
                             Objects.requireNonNull(queryDocumentSnapshot.get("bankAccHolderName")).toString(),
                             Objects.requireNonNull(queryDocumentSnapshot.get("bankAddress")).toString(),
-                            Objects.requireNonNull(queryDocumentSnapshot.get("businessUpi")).toString()
+                            Objects.requireNonNull(queryDocumentSnapshot.get("businessUpi")).toString(),
+                            Objects.requireNonNull(queryDocumentSnapshot.get("businesslogo")).toString()
                     );
                 }
                 sellName.setText(seller.getBusinessName());
@@ -65,6 +71,9 @@ public class SellerDetails extends AppCompatActivity {
                 accNoSell.setText(seller.getBusinessAcc());
                 IFSCSell.setText(seller.getBusinessIFSC());
                 infoSell.setText(seller.getBusinessInformation());
+
+                //Uri myuri = Uri.parse(seller.getBusinesslogo());
+                Picasso.get().load(seller.getBusinesslogo()).fit().centerCrop().into(sellLogo);
             }
         });
     }
