@@ -8,6 +8,8 @@ import androidx.room.Room;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -60,6 +62,21 @@ public class MainActivity extends AppCompatActivity {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         EmergencyNumbers.contactList = db.contactDao().getContacts();
+        if(EmergencyNumbers.contactList.isEmpty()) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            alert.setTitle("Add Emergency Contacts");
+            alert.setMessage("Your emergency contacts list is empty!!Please add emergency contacts!!");
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent = new Intent(MainActivity.this,EmergencyNumbers.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            });
+            alert.show();
+        }
+
         if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED &&
                 checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED &&
                 checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -75,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
             }, 1);
         }
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         profile = findViewById(R.id.profile);
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void SoS(View view) {
@@ -100,10 +117,8 @@ public class MainActivity extends AppCompatActivity {
                     mediaRecorder.prepare();
                     mediaRecorder.start();
                 } catch (IllegalStateException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
 
