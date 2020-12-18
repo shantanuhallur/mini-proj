@@ -35,4 +35,5 @@
     <string name="information">Information</string>
     <string name="add_product">Add Product</string>
     <string name="save">Save</string>
+    <string name="Rs">\u20B9</string>
 </resources>

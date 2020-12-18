@@ -105,12 +105,18 @@ public class AddBusiness extends AppCompatActivity {
                             bank_address.setText(Objects.requireNonNull(document.get("bankAddress")).toString());
                             Picasso.get().load(Objects.requireNonNull(document.get("businesslogo")).toString()).fit().centerCrop().into(blogo);
                             //registeredContinue();
-                            flag = true;
+                            //flag = true;
                             break;
                         }
                     }
                     if(flag) {
-                        registeredContinue();
+                        Log.d("addBusiness","UNREGISTERED");
+                        submit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                registeredContinue();
+                            }
+                        });
                     }
                     if(!flag) {
                         Log.d("addBusiness","UNREGISTERED");
