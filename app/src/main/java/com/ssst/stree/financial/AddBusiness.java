@@ -56,7 +56,7 @@ public class AddBusiness extends AppCompatActivity {
     private StorageReference logosStorage;
     private FirebaseFirestore db;
     private Uri uri;
-
+    private boolean flag = false;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +90,7 @@ public class AddBusiness extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()) {
-                    boolean flag = false;
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                         for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                             business_name.setText(Objects.requireNonNull(document.get("businessName")).toString());
@@ -105,39 +105,25 @@ public class AddBusiness extends AppCompatActivity {
                             bank_address.setText(Objects.requireNonNull(document.get("bankAddress")).toString());
                             Picasso.get().load(Objects.requireNonNull(document.get("businesslogo")).toString()).fit().centerCrop().into(blogo);
                             //registeredContinue();
-                            //flag = true;
+                            flag = true;
                             break;
                         }
                     }
-                    if(flag) {
-                        Log.d("addBusiness","UNREGISTERED");
-                        submit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                registeredContinue();
-                            }
-                        });
-                    }
-                    if(!flag) {
-                        Log.d("addBusiness","UNREGISTERED");
-                        submit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                unregisteredContinue();
-                            }
-                        });
-                    }
+
+                    submit.setOnClickListener(new View.OnClickListener(){
+
+                        @Override
+                        public void onClick(View view) {
+                            unregisteredContinue();
+                        }
+                    });
+
                 }
                 else {
                     Log.w("addBusiness", "Error getting documents.", task.getException());
                 }
             }
         });
-    }
-
-    private void registeredContinue() {
-        Intent intent = new Intent(this ,AddProduct.class);
-        startActivity(intent);
     }
 
     private void openImageChooser() {
@@ -166,29 +152,34 @@ public class AddBusiness extends AppCompatActivity {
 
     private void unregisteredContinue() {
 
-
-        final StorageReference storageReference = logosStorage.child(System.currentTimeMillis() + "_business_logo." + getFileExtension(uri));
-        UploadTask uploadTask = storageReference.putFile(uri);
-        uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                if(!task.isSuccessful()) {
-                    throw Objects.requireNonNull(task.getException());
+        if(flag){
+            Intent intent = new Intent(this ,AddProduct.class);
+            startActivity(intent);
+        }
+        else{
+            final StorageReference storageReference = logosStorage.child(System.currentTimeMillis() + "_business_logo." + getFileExtension(uri));
+            UploadTask uploadTask = storageReference.putFile(uri);
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if(!task.isSuccessful()) {
+                        throw Objects.requireNonNull(task.getException());
+                    }
+                    return storageReference.getDownloadUrl();
                 }
-                return storageReference.getDownloadUrl();
-            }
-        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
-                    Uri downloadUrl = task.getResult();
-                    Log.d("TAG", "onComplete: Hi-----------------------------------------------------------------");
-                    add(downloadUrl.toString());
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+                        Uri downloadUrl = task.getResult();
+                        Log.d("TAG", "onComplete: Hi-----------------------------------------------------------------");
+                        add(downloadUrl.toString());
+                    }
                 }
-            }
-        });
+            });
+        }
 
 
 

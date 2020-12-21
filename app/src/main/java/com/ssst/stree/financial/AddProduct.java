@@ -129,7 +129,7 @@ public class AddProduct extends AppCompatActivity {
                             Uri downloadUrl = task.getResult();
                             String id = productsDatabase.push().getKey();
                             if(id != null) {
-                                Product product = new Product(productName,productPrice,productCategory,productInformation,currentUser.getEmail(),downloadUrl);
+                                Product product = new Product(id,productName,productPrice,productCategory,productInformation,currentUser.getEmail(),downloadUrl);
                                 productsDatabase.child(id).setValue(product);
                             }
                         }else {

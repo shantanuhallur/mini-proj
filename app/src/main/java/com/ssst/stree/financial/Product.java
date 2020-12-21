@@ -11,16 +11,28 @@ public class Product implements Serializable {
     private String info;
     private String imageUri;
     private String email;
+    private String id;
 
     public Product() {}
 
-    public Product(String name, String price, String category, String info, String email, Uri uri) {
+    public Product(String id,String name, String price, String category, String info, String email, Uri uri) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
         this.info = info;
         this.email = email;
         this.imageUri = uri.toString();
+    }
+
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {
