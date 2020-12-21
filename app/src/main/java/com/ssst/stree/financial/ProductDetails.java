@@ -97,6 +97,7 @@ public class ProductDetails extends AppCompatActivity {
         Intent intent = new Intent(this, SellerDetails.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("email",product.getEmail());
+        intent.putExtra("pid",product.getId());
         startActivity(intent);
     }
 
@@ -111,7 +112,7 @@ public class ProductDetails extends AppCompatActivity {
             String id = wishlistDatabase.push().getKey();
             String data = Pid + "_" + currentUser.getEmail();
             if(id != null) {
-                CustomerWishlist wish = new CustomerWishlist(data);
+                CustomerWishlist wish = new CustomerWishlist(data,Pid,currentUser.getEmail());
                 wishlistDatabase.child(id).setValue(wish);
             }
             Toast.makeText(this,"Product Added to WishList",Toast.LENGTH_SHORT).show();
