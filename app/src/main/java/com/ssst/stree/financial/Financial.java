@@ -19,7 +19,6 @@ import com.google.firebase.database.Query;
 import com.ssst.stree.security.MainActivity;
 import com.ssst.stree.R;
 import com.ssst.stree.auth.SignIn;
-import com.ssst.stree.support.Product;
 
 public class Financial extends AppCompatActivity {
     public static String id;
@@ -38,6 +37,10 @@ public class Financial extends AppCompatActivity {
             Intent intent = new Intent(this , SignIn.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+        }
+
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            this.finish();
         }
 
         //Assign Variable
@@ -85,7 +88,7 @@ public class Financial extends AppCompatActivity {
         Financial.redirectActivity(this, SellerView.class);
     }
 
-    public static void redirectActivity(Activity activity,Class aClass) {
+    public static void redirectActivity(Activity activity,Class<?> aClass) {
         Intent intent = new Intent(activity, aClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
@@ -96,7 +99,7 @@ public class Financial extends AppCompatActivity {
         if(user != null) {
             profile.setText(user.getEmail());
         }else {
-            profile.setText("Your Profile");
+            profile.setText(R.string.your_profile);
         }
     }
 

@@ -1,5 +1,6 @@
-package com.ssst.stree.support;
+package com.ssst.stree.financial;
 
+import android.net.Uri;
 
 public class Seller {
     private final String email;
@@ -13,8 +14,9 @@ public class Seller {
     private final String bankBranch;
     private final String bankAccHolderName;
     private final String bankAddress;
+    private final String businesslogo;
 
-    public Seller(String email,String businessName, String businessContact, String businessInformation, String businessUpi, String businessAcc, String businessIFSC, String bankName, String bankBranch, String bankAccHolderName, String bankAddress) {
+    public Seller(String email, String businessName, String businessContact, String businessInformation, String businessUpi, String businessAcc, String businessIFSC, String bankName, String bankBranch, String bankAccHolderName, String bankAddress, String uri) {
         this.email = email;
         this.businessName = businessName;
         this.businessContact = businessContact;
@@ -26,6 +28,11 @@ public class Seller {
         this.bankBranch = bankBranch;
         this.bankAccHolderName = bankAccHolderName;
         this.bankAddress = bankAddress;
+        this.businesslogo = uri;
+    }
+
+    public String getBusinesslogo() {
+        return businesslogo;
     }
 
     public String getBusinessName() {
